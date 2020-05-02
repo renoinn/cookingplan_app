@@ -1,0 +1,2 @@
+const GOOGLE_API_KEY = '';
+const GOOGLE_CUSTOM_SEARCH_ID = '';
