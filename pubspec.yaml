@@ -42,6 +42,8 @@ dependencies:
   hive_flutter: ^0.3.0+2
   google_fonts:
   cached_network_image: ^2.1.0+1
+  flutter_inappwebview: ^2.1.0+1
+  url_launcher: ^5.4.5
 
 dev_dependencies:
   flutter_test:
@@ -50,6 +52,8 @@ dev_dependencies:
   build_runner: ^1.8.1
   hive_generator: ^0.7.0+2
   freezed: ^0.10.4
+
+  # flutter packages pub run build_runner build --delete-conflicting-outputs
   json_serializable: ^3.3.0
 
 # hive_generator issue

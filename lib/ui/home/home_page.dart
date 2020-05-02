@@ -10,6 +10,7 @@ import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
 
 final homePageKey = GlobalKey<ScaffoldState>();
+const _kFoodListItemFormHeight = 96.0;
 class HomePage extends StatelessWidget {
   const HomePage({
     Key key,
@@ -17,7 +18,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     // TODO showLicensePage
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
@@ -26,28 +26,31 @@ class HomePage extends StatelessWidget {
         body: Stack(
           children: <Widget>[
             Scrollbar(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    Text('家にある食材', style: Theme.of(context).textTheme.headline5,),
-                    ListView.separated(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      separatorBuilder: (context, position) => const Divider(),
-                      itemCount: context.select((HomeState s) => s.foods).length,
-                      itemBuilder: (context, position) {
-                        List<Food> foods = context.select((HomeState s) => s.foods);
-                        return _FoodListItem(food: foods[position],);
-                      },
-                    ),
-                  ],
+              child: SafeArea(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                      Text('家にある食材', style: Theme.of(context).textTheme.headline5,),
+                      ListView.separated(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        separatorBuilder: (context, position) => const Divider(),
+                        itemCount: context.select((HomeState s) => s.foods).length,
+                        itemBuilder: (context, position) {
+                          List<Food> foods = context.select((HomeState s) => s.foods);
+                          return _FoodListItem(food: foods[position],);
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 32.0),
+                height: _kFoodListItemFormHeight,
+                padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 32.0),
                 decoration: BoxDecoration(
                   color: Colors.grey[200],
                 ),
@@ -56,7 +59,10 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
-        floatingActionButton: _SearchMealsButton(),
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.only(bottom: _kFoodListItemFormHeight),
+          child: _SearchMealsButton(),
+        ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
     );
@@ -176,6 +182,7 @@ class _FoodListItemFormState extends State<_FoodListItemForm> {
               name: _food.text,
             );
             context.read<HomeStateController>().addFood(food);
+            _food.clear();
           },
           child: Icon(Icons.add),
         )

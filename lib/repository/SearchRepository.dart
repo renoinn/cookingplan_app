@@ -1,4 +1,4 @@
-import 'package:cookingplan/entity/CustomSearchResponse.dart';
+import 'package:cookingplan/response/CustomSearchResponse.dart';
 import 'package:cookingplan/env.dart';
 import 'package:cookingplan/network.dart';
 import 'package:dio/dio.dart';

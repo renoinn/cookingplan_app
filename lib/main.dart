@@ -1,3 +1,4 @@
+import 'package:cookingplan/entity/Favorite.dart';
 import 'package:cookingplan/entity/Food.dart';
 import 'package:cookingplan/repository/FoodRepository.dart';
 import 'package:cookingplan/ui/home/home_state_controller.dart';
@@ -13,6 +14,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(StorageMethodAdapter());
   Hive.registerAdapter(FoodAdapter());
+  Hive.registerAdapter(FavoriteAdapter());
   runApp(App());
 }
 
