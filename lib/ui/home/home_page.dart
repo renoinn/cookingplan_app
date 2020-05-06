@@ -34,7 +34,24 @@ class HomePage extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
-                      Text('家にある食材', style: Theme.of(context).textTheme.headline5,),
+                      Stack(
+                        children: <Widget>[
+                          Align(
+                            alignment: Alignment.center,
+                            child: Text('家にある食材', style: Theme.of(context).textTheme.headline5,),
+                          ),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: FlatButton(
+                              child: Icon(Icons.copyright),
+                              onPressed: () => showLicensePage(
+                                applicationName: 'クップラ',
+                                context: context,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                       ListView.separated(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
