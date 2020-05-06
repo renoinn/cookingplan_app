@@ -22,9 +22,16 @@ class FavoriteRepository {
     });
   }
 
-  Future<void> saveFavorite(Favorite food) async {
+  Future<void> saveFavorite(Favorite favorite) async {
     _openBox.future.then((box) {
-      box.add(food);
+      box.add(favorite);
+    });
+  }
+
+  Future<bool> isExist(String link) async {
+    return _openBox.future.then((box) {
+      List<Favorite> item = box.values.where((element) => element.link == link).toList();
+      return item.isNotEmpty;
     });
   }
 }

@@ -6,9 +6,9 @@ import 'package:cookingplan/ui/home/home_state.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 class HomeStateController extends StateNotifier<HomeState> with LocatorMixin {
-  HomeStateController(HomeState state, this.foodRepository) : super(state);
+  HomeStateController(HomeState state) : super(state);
 
-  final FoodRepository foodRepository;
+  FoodRepository get foodRepository => read<FoodRepository>();
 
   @override
   void initState() async {

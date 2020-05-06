@@ -13,7 +13,8 @@ class _$SearchStateTearOff {
   const _$SearchStateTearOff();
 
   _SearchState call(
-      {List<Food> selectedFoods, List<SearchResultItem> results}) {
+      {List<Food> selectedFoods = const <Food>[],
+      List<SearchResultItem> results = const <SearchResultItem>[]}) {
     return _SearchState(
       selectedFoods: selectedFoods,
       results: results,
@@ -96,10 +97,16 @@ class __$SearchStateCopyWithImpl<$Res> extends _$SearchStateCopyWithImpl<$Res>
 }
 
 class _$_SearchState with DiagnosticableTreeMixin implements _SearchState {
-  _$_SearchState({this.selectedFoods, this.results});
+  _$_SearchState(
+      {this.selectedFoods = const <Food>[],
+      this.results = const <SearchResultItem>[]})
+      : assert(selectedFoods != null),
+        assert(results != null);
 
+  @JsonKey(defaultValue: const <Food>[])
   @override
   final List<Food> selectedFoods;
+  @JsonKey(defaultValue: const <SearchResultItem>[])
   @override
   final List<SearchResultItem> results;
 
@@ -161,7 +168,8 @@ class _$SearchResultItemTearOff {
       String foodstuff,
       String thumbnail,
       String link,
-      String displayLink}) {
+      String displayLink,
+      bool favorite}) {
     return _SearchResultItem(
       title: title,
       description: description,
@@ -169,6 +177,7 @@ class _$SearchResultItemTearOff {
       thumbnail: thumbnail,
       link: link,
       displayLink: displayLink,
+      favorite: favorite,
     );
   }
 }
@@ -183,6 +192,7 @@ mixin _$SearchResultItem {
   String get thumbnail;
   String get link;
   String get displayLink;
+  bool get favorite;
 
   $SearchResultItemCopyWith<SearchResultItem> get copyWith;
 }
@@ -197,7 +207,8 @@ abstract class $SearchResultItemCopyWith<$Res> {
       String foodstuff,
       String thumbnail,
       String link,
-      String displayLink});
+      String displayLink,
+      bool favorite});
 }
 
 class _$SearchResultItemCopyWithImpl<$Res>
@@ -216,6 +227,7 @@ class _$SearchResultItemCopyWithImpl<$Res>
     Object thumbnail = freezed,
     Object link = freezed,
     Object displayLink = freezed,
+    Object favorite = freezed,
   }) {
     return _then(_value.copyWith(
       title: title == freezed ? _value.title : title as String,
@@ -226,6 +238,7 @@ class _$SearchResultItemCopyWithImpl<$Res>
       link: link == freezed ? _value.link : link as String,
       displayLink:
           displayLink == freezed ? _value.displayLink : displayLink as String,
+      favorite: favorite == freezed ? _value.favorite : favorite as bool,
     ));
   }
 }
@@ -242,7 +255,8 @@ abstract class _$SearchResultItemCopyWith<$Res>
       String foodstuff,
       String thumbnail,
       String link,
-      String displayLink});
+      String displayLink,
+      bool favorite});
 }
 
 class __$SearchResultItemCopyWithImpl<$Res>
@@ -263,6 +277,7 @@ class __$SearchResultItemCopyWithImpl<$Res>
     Object thumbnail = freezed,
     Object link = freezed,
     Object displayLink = freezed,
+    Object favorite = freezed,
   }) {
     return _then(_SearchResultItem(
       title: title == freezed ? _value.title : title as String,
@@ -273,6 +288,7 @@ class __$SearchResultItemCopyWithImpl<$Res>
       link: link == freezed ? _value.link : link as String,
       displayLink:
           displayLink == freezed ? _value.displayLink : displayLink as String,
+      favorite: favorite == freezed ? _value.favorite : favorite as bool,
     ));
   }
 }
@@ -286,7 +302,8 @@ class _$_SearchResultItem
       this.foodstuff,
       this.thumbnail,
       this.link,
-      this.displayLink});
+      this.displayLink,
+      this.favorite});
 
   @override
   final String title;
@@ -300,10 +317,12 @@ class _$_SearchResultItem
   final String link;
   @override
   final String displayLink;
+  @override
+  final bool favorite;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SearchResultItem(title: $title, description: $description, foodstuff: $foodstuff, thumbnail: $thumbnail, link: $link, displayLink: $displayLink)';
+    return 'SearchResultItem(title: $title, description: $description, foodstuff: $foodstuff, thumbnail: $thumbnail, link: $link, displayLink: $displayLink, favorite: $favorite)';
   }
 
   @override
@@ -316,7 +335,8 @@ class _$_SearchResultItem
       ..add(DiagnosticsProperty('foodstuff', foodstuff))
       ..add(DiagnosticsProperty('thumbnail', thumbnail))
       ..add(DiagnosticsProperty('link', link))
-      ..add(DiagnosticsProperty('displayLink', displayLink));
+      ..add(DiagnosticsProperty('displayLink', displayLink))
+      ..add(DiagnosticsProperty('favorite', favorite));
   }
 
   @override
@@ -338,7 +358,10 @@ class _$_SearchResultItem
                 const DeepCollectionEquality().equals(other.link, link)) &&
             (identical(other.displayLink, displayLink) ||
                 const DeepCollectionEquality()
-                    .equals(other.displayLink, displayLink)));
+                    .equals(other.displayLink, displayLink)) &&
+            (identical(other.favorite, favorite) ||
+                const DeepCollectionEquality()
+                    .equals(other.favorite, favorite)));
   }
 
   @override
@@ -349,7 +372,8 @@ class _$_SearchResultItem
       const DeepCollectionEquality().hash(foodstuff) ^
       const DeepCollectionEquality().hash(thumbnail) ^
       const DeepCollectionEquality().hash(link) ^
-      const DeepCollectionEquality().hash(displayLink);
+      const DeepCollectionEquality().hash(displayLink) ^
+      const DeepCollectionEquality().hash(favorite);
 
   @override
   _$SearchResultItemCopyWith<_SearchResultItem> get copyWith =>
@@ -363,7 +387,8 @@ abstract class _SearchResultItem implements SearchResultItem {
       String foodstuff,
       String thumbnail,
       String link,
-      String displayLink}) = _$_SearchResultItem;
+      String displayLink,
+      bool favorite}) = _$_SearchResultItem;
 
   @override
   String get title;
@@ -377,6 +402,8 @@ abstract class _SearchResultItem implements SearchResultItem {
   String get link;
   @override
   String get displayLink;
+  @override
+  bool get favorite;
   @override
   _$SearchResultItemCopyWith<_SearchResultItem> get copyWith;
 }

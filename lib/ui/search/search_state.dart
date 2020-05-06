@@ -8,8 +8,8 @@ part 'search_state.freezed.dart';
 abstract class SearchState with _$SearchState {
 
   factory SearchState({
-    List<Food> selectedFoods,
-    List<SearchResultItem> results,
+    @Default(<Food>[]) List<Food> selectedFoods,
+    @Default(<SearchResultItem>[]) List<SearchResultItem> results,
   }) = _SearchState;
 }
 
@@ -23,5 +23,6 @@ abstract class SearchResultItem with _$SearchResultItem {
     String thumbnail,
     String link,
     String displayLink,
+    bool favorite,
   }) = _SearchResultItem;
 }

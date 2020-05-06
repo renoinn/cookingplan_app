@@ -1,4 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cookingplan/ui/favorite/favorite_state.dart';
+import 'package:cookingplan/ui/favorite/favorite_state_controller.dart';
 import 'package:cookingplan/ui/home/home_state_controller.dart';
 import 'package:cookingplan/ui/search/search_state.dart';
 import 'package:cookingplan/ui/search/search_state_controller.dart';
@@ -77,25 +79,43 @@ class _SearchPageResultItem extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    ButtonTheme(
-                      minWidth: 32.0,
-                      height: 32.0,
-                      padding: EdgeInsets.zero,
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      child: FlatButton(
-                        onPressed: () {
-                          context.read<SearchStateController>().addFavorite(result);
-                        },
-                        child: Icon(Icons.star_border, size: 24.0,),
-                      ),
+                    FavoriteButton(
+                      favorite: result.favorite,
+                      onPressed: () {
+                        context.read<FavoriteStateController>().addFavorite(result, context.read<SearchState>().selectedFoods);
+                      },
                     ),
-//                            Icon(Icons.restaurant)
                   ],
                 ),
               ],
             ),),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class FavoriteButton extends StatelessWidget {
+  const FavoriteButton({
+    Key key,
+    this.favorite,
+    this.onPressed,
+  }) : super(key: key);
+
+  final VoidCallback onPressed;
+  final bool favorite;
+
+  @override
+  Widget build(BuildContext context) {
+    return ButtonTheme(
+      minWidth: 32.0,
+      height: 32.0,
+      padding: EdgeInsets.zero,
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      child: FlatButton(
+        onPressed: onPressed,
+        child: Icon(favorite ? Icons.star : Icons.star_border, size: 24.0,),
       ),
     );
   }

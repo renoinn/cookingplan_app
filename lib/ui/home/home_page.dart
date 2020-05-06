@@ -11,7 +11,11 @@ import 'package:provider/provider.dart';
 
 final homePageKey = GlobalKey<ScaffoldState>();
 const _kFoodListItemFormHeight = 96.0;
+
 class HomePage extends StatelessWidget {
+
+  static const String routeName = 'home/';
+
   const HomePage({
     Key key,
   }) : super(key: key);
@@ -89,14 +93,16 @@ class _SearchMealsButton extends StatelessWidget {
             MaterialPageRoute(
               builder: (context) {
                 SearchState searchState = SearchState(selectedFoods: selectedFoods);
-                SearchRepository repository = SearchRepository();
-                return StateNotifierProvider<SearchStateController, SearchState>(
-                  create: (context) => SearchStateController(searchState, repository),
-                  child: Consumer<SearchStateController>(
-                    builder: (context, controller, _) {
-                      controller.search();
-                      return const SearchPage();
-                    },
+                return Provider<SearchRepository>(
+                  create: (context) => SearchRepository(),
+                  child: StateNotifierProvider<SearchStateController, SearchState>(
+                    create: (context) => SearchStateController(searchState),
+                    child: Consumer<SearchStateController>(
+                      builder: (context, controller, _) {
+                        controller.search();
+                        return const SearchPage();
+                      },
+                    ),
                   ),
                 );
               },
