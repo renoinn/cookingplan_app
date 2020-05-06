@@ -1,6 +1,7 @@
 import 'package:cookingplan/repository/FavoriteRepository.dart';
 import 'package:cookingplan/response/CustomSearchResponse.dart';
 import 'package:cookingplan/repository/SearchRepository.dart';
+import 'package:cookingplan/ui/favorite/favorite_state_controller.dart';
 import 'package:cookingplan/ui/search/search_state.dart';
 import 'package:state_notifier/state_notifier.dart';
 
@@ -9,6 +10,8 @@ class SearchStateController extends StateNotifier<SearchState> with LocatorMixin
 
   SearchRepository get searchRepository => read<SearchRepository>();
   FavoriteRepository get favoriteRepository => read<FavoriteRepository>();
+
+  FavoriteStateController get favoriteStateController => read<FavoriteStateController>();
 
   void search() async {
     String query = state.selectedFoods.map((food) => food.name).join(' ');
@@ -33,7 +36,19 @@ class SearchStateController extends StateNotifier<SearchState> with LocatorMixin
 
   void addFavorite(SearchResultItem item) {
     List<SearchResultItem> results = List<SearchResultItem>.from(state.results);
-    SearchResultItem first = results.firstWhere((element) => element == item);
-    // TODO update item.favorite = true
+    int index = results.indexWhere((element) => element.link == item.link);
+    results[index] = results[index].copyWith(favorite: true);
+    state = state.copyWith(results: results);
+
+    favoriteStateController.addFavorite(item, state.selectedFoods);
+  }
+
+  void deleteFavorite(String link) {
+    List<SearchResultItem> results = List<SearchResultItem>.from(state.results);
+    int index = results.indexWhere((element) => element.link == link);
+    results[index] = results[index].copyWith(favorite: false);
+    state = state.copyWith(results: results);
+
+    favoriteStateController.deleteFavorite(link);
   }
 }

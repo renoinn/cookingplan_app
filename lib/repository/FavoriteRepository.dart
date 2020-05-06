@@ -34,4 +34,11 @@ class FavoriteRepository {
       return item.isNotEmpty;
     });
   }
+
+  Future<void> deleteFavorite(String link) async {
+    _openBox.future.then((box) {
+      Favorite favorite = box.values.firstWhere((element) => element.link == link);
+      favorite.delete();
+    });
+  }
 }

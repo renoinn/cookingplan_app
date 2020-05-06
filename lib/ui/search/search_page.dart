@@ -82,7 +82,11 @@ class _SearchPageResultItem extends StatelessWidget {
                     FavoriteButton(
                       favorite: result.favorite,
                       onPressed: () {
-                        context.read<FavoriteStateController>().addFavorite(result, context.read<SearchState>().selectedFoods);
+                        if (result.favorite) {
+                          context.read<SearchStateController>().deleteFavorite(result.link);
+                        } else {
+                          context.read<SearchStateController>().addFavorite(result);
+                        }
                       },
                     ),
                   ],

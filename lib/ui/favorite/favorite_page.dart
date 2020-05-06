@@ -84,7 +84,7 @@ class _FavoriteItem extends StatelessWidget {
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       child: FlatButton(
                         onPressed: () {
-                          context.read<FavoriteStateController>().deleteFavorite(favorite);
+                          context.read<FavoriteStateController>().deleteFavorite(favorite.link);
                         },
                         child: Icon(Icons.delete, size: 24.0, color: Colors.grey,),
                       ),

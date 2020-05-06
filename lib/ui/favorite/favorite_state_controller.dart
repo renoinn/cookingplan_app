@@ -35,8 +35,8 @@ class FavoriteStateController extends StateNotifier<FavoriteState> with LocatorM
     state = state.copyWith(favorites: favorites);
   }
 
-  void deleteFavorite(Favorite favorite) async {
-    await favorite.delete();
+  void deleteFavorite(String link) async {
+    await favoriteRepository.deleteFavorite(link);
     List<Favorite> favorites = await favoriteRepository.getFavorites();
     state = state.copyWith(favorites: favorites);
   }
