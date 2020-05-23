@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:cookingplan/entity/Food.dart';
+import 'package:cookingplan/entity/UsedFood.dart';
 import 'package:cookingplan/repository/FoodRepository.dart';
+import 'package:cookingplan/repository/UsedFoodRepository.dart';
 import 'package:cookingplan/ui/home/home_state.dart';
 import 'package:state_notifier/state_notifier.dart';
 
@@ -9,12 +11,14 @@ class HomeStateController extends StateNotifier<HomeState> with LocatorMixin {
   HomeStateController(HomeState state) : super(state);
 
   FoodRepository get foodRepository => read<FoodRepository>();
+  UsedFoodRepository get usedFoodRepository => read<UsedFoodRepository>();
 
   @override
   void initState() async {
     super.initState();
     List<Food> foods = await foodRepository.getFoods();
-    state = state.copyWith(foods: foods);
+    List<UsedFood> usedFoods = await usedFoodRepository.getUsedFoods();
+    state = state.copyWith(foods: foods, usedFoods: usedFoods);
   }
 
   void addFood(Food food) async {
@@ -24,9 +28,11 @@ class HomeStateController extends StateNotifier<HomeState> with LocatorMixin {
   }
   
   void deleteFood(Food food) async {
+    await usedFoodRepository.saveUsedFood(UsedFood.fromFood(food: food));
     await food.delete();
     List<Food> foods = await foodRepository.getFoods();
-    state = state.copyWith(foods: foods);
+    List<UsedFood> usedFoods = await usedFoodRepository.getUsedFoods();
+    state = state.copyWith(foods: foods, usedFoods: usedFoods);
   }
 
   void undoDelete(Food food) {

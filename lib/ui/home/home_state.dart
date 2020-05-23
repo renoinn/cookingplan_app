@@ -1,4 +1,5 @@
 import 'package:cookingplan/entity/Food.dart';
+import 'package:cookingplan/entity/UsedFood.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
@@ -10,6 +11,7 @@ abstract class HomeState with _$HomeState {
   const factory HomeState({
     @Default(<Food>[]) List<Food> foods,
     @Default(<Food>[]) List<Food> selectedFoods,
+    @Default(<UsedFood>[]) List<UsedFood> usedFoods,
   }) = _HomeState;
 
 }

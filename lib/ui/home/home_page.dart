@@ -1,4 +1,5 @@
 import 'package:cookingplan/entity/Food.dart';
+import 'package:cookingplan/entity/UsedFood.dart';
 import 'package:cookingplan/repository/SearchRepository.dart';
 import 'package:cookingplan/ui/home/home_state_controller.dart';
 import 'package:cookingplan/ui/home/home_state.dart';
@@ -10,7 +11,8 @@ import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
 
 final homePageKey = GlobalKey<ScaffoldState>();
-const _kFoodListItemFormHeight = 96.0;
+const _kFoodFormHeight = 140.0;
+const _kFoodFormMinimumHeight = 96.0;
 
 class HomePage extends StatelessWidget {
 
@@ -69,19 +71,12 @@ class HomePage extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: Container(
-                height: _kFoodListItemFormHeight,
-                padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 32.0),
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                ),
-                child: const _FoodListItemForm(),
-              ),
+              child: const _FoodForm(),
             ),
           ],
         ),
         floatingActionButton: Padding(
-          padding: const EdgeInsets.only(bottom: _kFoodListItemFormHeight),
+          padding: const EdgeInsets.only(bottom: _kFoodFormHeight),
           child: _SearchMealsButton(),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -175,41 +170,73 @@ class _FoodListItem extends StatelessWidget {
   }
 }
 
-class _FoodListItemForm extends StatefulWidget {
-  const _FoodListItemForm({
+class _FoodForm extends StatefulWidget {
+  const _FoodForm({
     Key key,
   }) : super(key: key);
 
   @override
-  _FoodListItemFormState createState() => _FoodListItemFormState();
+  _FoodFormState createState() => _FoodFormState();
 }
 
-class _FoodListItemFormState extends State<_FoodListItemForm> {
+class _FoodFormState extends State<_FoodForm> {
   TextEditingController _food = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Expanded(
-          child: TextFormField(
-            controller: _food,
-            decoration: InputDecoration(
-              hintText: '食材を追加'
+    List<UsedFood> usedFoods = context.select((HomeState s) => s.usedFoods);
+    final boxHeight = usedFoods.isNotEmpty ? _kFoodFormHeight : _kFoodFormMinimumHeight;
+    return Container(
+      height: boxHeight,
+      padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 32.0),
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: <Widget>[
+                ...usedFoods.map((usedFood) {
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: InputChip(
+                        label: Text(usedFood.name),
+                        onPressed: () {
+                          _food.text = usedFood.name;
+                        }
+                    ),
+                  );
+                }).toList(),
+              ],
             ),
           ),
-        ),
-        FlatButton(
-          onPressed: () {
-            Food food = Food.withName(
-              name: _food.text,
-            );
-            context.read<HomeStateController>().addFood(food);
-            _food.clear();
-          },
-          child: Icon(Icons.add),
-        )
-      ],
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: TextFormField(
+                  controller: _food,
+                  decoration: InputDecoration(
+                      hintText: '食材を追加'
+                  ),
+                ),
+              ),
+              FlatButton(
+                onPressed: () {
+                  Food food = Food.withName(
+                    name: _food.text,
+                  );
+                  context.read<HomeStateController>().addFood(food);
+                  _food.clear();
+                },
+                child: Icon(Icons.add),
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

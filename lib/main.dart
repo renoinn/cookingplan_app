@@ -1,7 +1,10 @@
 import 'package:cookingplan/entity/Favorite.dart';
 import 'package:cookingplan/entity/Food.dart';
+import 'package:cookingplan/entity/UsedFood.dart';
 import 'package:cookingplan/repository/FavoriteRepository.dart';
 import 'package:cookingplan/repository/FoodRepository.dart';
+import 'package:cookingplan/repository/UsedFoodRepository.dart';
+import 'package:cookingplan/theme.dart';
 import 'package:cookingplan/ui/favorite/favorite_state.dart';
 import 'package:cookingplan/ui/favorite/favorite_state_controller.dart';
 import 'package:cookingplan/ui/home/home_state_controller.dart';
@@ -17,6 +20,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(StorageMethodAdapter());
   Hive.registerAdapter(FoodAdapter());
+  Hive.registerAdapter(UsedFoodAdapter());
   Hive.registerAdapter(FavoriteAdapter());
   runApp(App());
 }
@@ -31,6 +35,9 @@ class App extends StatelessWidget {
         Provider<FoodRepository>(
           create: (context) => FoodRepository(),
         ),
+        Provider<UsedFoodRepository>(
+          create: (context) => UsedFoodRepository(),
+        ),
         Provider<FavoriteRepository>(
           create: (context) => FavoriteRepository(),
         ),
@@ -42,10 +49,7 @@ class App extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
+        theme: lightTheme,
         home: const RootTabPage(),
       ),
     );

@@ -30,16 +30,12 @@ class Food extends HiveObject {
   @HiveField(4)
   DateTime updatedAt;
 
-  @HiveField(5)
-  DateTime deletedAt;
-
   Food({
     this.name,
     this.count,
     this.storageMethod,
     this.createdAt,
     this.updatedAt,
-    this.deletedAt,
   });
 
   factory Food.withName({@required String name, int count = 0, StorageMethod storageMethod = StorageMethod.Chilled,}) => Food(
@@ -48,6 +44,5 @@ class Food extends HiveObject {
     storageMethod: storageMethod,
     createdAt: DateTime.now(),
     updatedAt: DateTime.now(),
-    deletedAt: DateTime.now(),
   );
 }

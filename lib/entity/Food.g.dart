@@ -51,14 +51,13 @@ class FoodAdapter extends TypeAdapter<Food> {
       storageMethod: fields[2] as StorageMethod,
       createdAt: fields[3] as DateTime,
       updatedAt: fields[4] as DateTime,
-      deletedAt: fields[5] as DateTime,
     );
   }
 
   @override
   void write(BinaryWriter writer, Food obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -68,8 +67,6 @@ class FoodAdapter extends TypeAdapter<Food> {
       ..writeByte(3)
       ..write(obj.createdAt)
       ..writeByte(4)
-      ..write(obj.updatedAt)
-      ..writeByte(5)
-      ..write(obj.deletedAt);
+      ..write(obj.updatedAt);
   }
 }

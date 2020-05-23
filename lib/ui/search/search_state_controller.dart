@@ -13,9 +13,10 @@ class SearchStateController extends StateNotifier<SearchState> with LocatorMixin
 
   FavoriteStateController get favoriteStateController => read<FavoriteStateController>();
 
-  void search() async {
+  void search({int page = 0}) async {
     String query = state.selectedFoods.map((food) => food.name).join(' ');
-    CustomSearchResponse response = await searchRepository.search(query: query);
+    int nextPage = state.page + 1;
+    CustomSearchResponse response = await searchRepository.search(query: query, page: nextPage);
 
     List<SearchResultItem> results = List<SearchResultItem>.from(state.results);
     for(int i = 0; i < response.items.length; i++) {
@@ -31,7 +32,7 @@ class SearchStateController extends StateNotifier<SearchState> with LocatorMixin
         favorite: favorite,
       ));
     }
-    state = state.copyWith(results: results);
+    state = state.copyWith(results: results, page: nextPage);
   }
 
   void addFavorite(SearchResultItem item) {

@@ -1,3 +1,4 @@
+import 'package:cookingplan/theme.dart';
 import 'package:cookingplan/ui/favorite/favorite_navigator.dart';
 import 'package:cookingplan/ui/home/home_navigator.dart';
 import 'package:flutter/material.dart';
@@ -57,6 +58,7 @@ class _RootTabPageState extends State<RootTabPage> {
           }).toList(),
         ),
         bottomNavigationBar: BottomAppBar(
+          color: Theme.of(context).primaryColor,
           child: Row(
             children: _models.map((model) {
               return Expanded(
@@ -127,12 +129,12 @@ class _NavigationButton extends StatelessWidget {
         children: <Widget>[
           Icon(
             icon,
-            color: selected ? Theme.of(context).primaryColor : Colors.black,
+            color: selected ? accentColor : Colors.white,
           ),
           Text(
             title,
             style: TextStyle(
-              color: selected ? Theme.of(context).primaryColor : Colors.black,
+              color: selected ? accentColor : Colors.white,
             ),
           ),
         ],

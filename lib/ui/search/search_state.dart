@@ -10,6 +10,7 @@ abstract class SearchState with _$SearchState {
   factory SearchState({
     @Default(<Food>[]) List<Food> selectedFoods,
     @Default(<SearchResultItem>[]) List<SearchResultItem> results,
+    @Default(0) int page,
   }) = _SearchState;
 }
 

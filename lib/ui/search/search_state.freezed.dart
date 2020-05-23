@@ -14,10 +14,12 @@ class _$SearchStateTearOff {
 
   _SearchState call(
       {List<Food> selectedFoods = const <Food>[],
-      List<SearchResultItem> results = const <SearchResultItem>[]}) {
+      List<SearchResultItem> results = const <SearchResultItem>[],
+      int page = 0}) {
     return _SearchState(
       selectedFoods: selectedFoods,
       results: results,
+      page: page,
     );
   }
 }
@@ -28,6 +30,7 @@ const $SearchState = _$SearchStateTearOff();
 mixin _$SearchState {
   List<Food> get selectedFoods;
   List<SearchResultItem> get results;
+  int get page;
 
   $SearchStateCopyWith<SearchState> get copyWith;
 }
@@ -36,7 +39,8 @@ abstract class $SearchStateCopyWith<$Res> {
   factory $SearchStateCopyWith(
           SearchState value, $Res Function(SearchState) then) =
       _$SearchStateCopyWithImpl<$Res>;
-  $Res call({List<Food> selectedFoods, List<SearchResultItem> results});
+  $Res call(
+      {List<Food> selectedFoods, List<SearchResultItem> results, int page});
 }
 
 class _$SearchStateCopyWithImpl<$Res> implements $SearchStateCopyWith<$Res> {
@@ -50,6 +54,7 @@ class _$SearchStateCopyWithImpl<$Res> implements $SearchStateCopyWith<$Res> {
   $Res call({
     Object selectedFoods = freezed,
     Object results = freezed,
+    Object page = freezed,
   }) {
     return _then(_value.copyWith(
       selectedFoods: selectedFoods == freezed
@@ -58,6 +63,7 @@ class _$SearchStateCopyWithImpl<$Res> implements $SearchStateCopyWith<$Res> {
       results: results == freezed
           ? _value.results
           : results as List<SearchResultItem>,
+      page: page == freezed ? _value.page : page as int,
     ));
   }
 }
@@ -68,7 +74,8 @@ abstract class _$SearchStateCopyWith<$Res>
           _SearchState value, $Res Function(_SearchState) then) =
       __$SearchStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<Food> selectedFoods, List<SearchResultItem> results});
+  $Res call(
+      {List<Food> selectedFoods, List<SearchResultItem> results, int page});
 }
 
 class __$SearchStateCopyWithImpl<$Res> extends _$SearchStateCopyWithImpl<$Res>
@@ -84,6 +91,7 @@ class __$SearchStateCopyWithImpl<$Res> extends _$SearchStateCopyWithImpl<$Res>
   $Res call({
     Object selectedFoods = freezed,
     Object results = freezed,
+    Object page = freezed,
   }) {
     return _then(_SearchState(
       selectedFoods: selectedFoods == freezed
@@ -92,6 +100,7 @@ class __$SearchStateCopyWithImpl<$Res> extends _$SearchStateCopyWithImpl<$Res>
       results: results == freezed
           ? _value.results
           : results as List<SearchResultItem>,
+      page: page == freezed ? _value.page : page as int,
     ));
   }
 }
@@ -99,9 +108,11 @@ class __$SearchStateCopyWithImpl<$Res> extends _$SearchStateCopyWithImpl<$Res>
 class _$_SearchState with DiagnosticableTreeMixin implements _SearchState {
   _$_SearchState(
       {this.selectedFoods = const <Food>[],
-      this.results = const <SearchResultItem>[]})
+      this.results = const <SearchResultItem>[],
+      this.page = 0})
       : assert(selectedFoods != null),
-        assert(results != null);
+        assert(results != null),
+        assert(page != null);
 
   @JsonKey(defaultValue: const <Food>[])
   @override
@@ -109,10 +120,13 @@ class _$_SearchState with DiagnosticableTreeMixin implements _SearchState {
   @JsonKey(defaultValue: const <SearchResultItem>[])
   @override
   final List<SearchResultItem> results;
+  @JsonKey(defaultValue: 0)
+  @override
+  final int page;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SearchState(selectedFoods: $selectedFoods, results: $results)';
+    return 'SearchState(selectedFoods: $selectedFoods, results: $results, page: $page)';
   }
 
   @override
@@ -121,7 +135,8 @@ class _$_SearchState with DiagnosticableTreeMixin implements _SearchState {
     properties
       ..add(DiagnosticsProperty('type', 'SearchState'))
       ..add(DiagnosticsProperty('selectedFoods', selectedFoods))
-      ..add(DiagnosticsProperty('results', results));
+      ..add(DiagnosticsProperty('results', results))
+      ..add(DiagnosticsProperty('page', page));
   }
 
   @override
@@ -132,14 +147,18 @@ class _$_SearchState with DiagnosticableTreeMixin implements _SearchState {
                 const DeepCollectionEquality()
                     .equals(other.selectedFoods, selectedFoods)) &&
             (identical(other.results, results) ||
-                const DeepCollectionEquality().equals(other.results, results)));
+                const DeepCollectionEquality()
+                    .equals(other.results, results)) &&
+            (identical(other.page, page) ||
+                const DeepCollectionEquality().equals(other.page, page)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(selectedFoods) ^
-      const DeepCollectionEquality().hash(results);
+      const DeepCollectionEquality().hash(results) ^
+      const DeepCollectionEquality().hash(page);
 
   @override
   _$SearchStateCopyWith<_SearchState> get copyWith =>
@@ -149,12 +168,15 @@ class _$_SearchState with DiagnosticableTreeMixin implements _SearchState {
 abstract class _SearchState implements SearchState {
   factory _SearchState(
       {List<Food> selectedFoods,
-      List<SearchResultItem> results}) = _$_SearchState;
+      List<SearchResultItem> results,
+      int page}) = _$_SearchState;
 
   @override
   List<Food> get selectedFoods;
   @override
   List<SearchResultItem> get results;
+  @override
+  int get page;
   @override
   _$SearchStateCopyWith<_SearchState> get copyWith;
 }

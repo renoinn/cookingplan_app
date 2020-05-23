@@ -17,6 +17,7 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<SearchResultItem> results = context.select((SearchState s) => s.results);
     return Scaffold(
       key: searchPageKey,
       appBar: AppBar(),
@@ -26,8 +27,12 @@ class SearchPage extends StatelessWidget {
             separatorBuilder: (context, position) => const Divider(),
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: context.select((SearchState s) => s.results)?.length ?? 0,
+            itemCount: results.length ?? 0,
             itemBuilder: (context, position) {
+              if (results.length == position) {
+                context.read<SearchStateController>().search();
+                return CircularProgressIndicator();
+              }
               SearchResultItem result = context.select((SearchState s) => s.results)[position];
               return _SearchPageResultItem(key: ValueKey(result.link), result: result);
             },

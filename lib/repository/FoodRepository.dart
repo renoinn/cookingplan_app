@@ -22,6 +22,13 @@ class FoodRepository {
     });
   }
 
+  Future<bool> isExist(String name) async {
+    return _openBox.future.then((box) {
+      List<Food> item = box.values.where((element) => element.name == name).toList();
+      return item.isNotEmpty;
+    });
+  }
+
   Future<void> saveFood(Food food) async {
     _openBox.future.then((box) {
       box.add(food);
