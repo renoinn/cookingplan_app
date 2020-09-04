@@ -1,5 +1,4 @@
 import 'package:cookingplan/ui/favorite/favorite_page.dart';
-import 'package:cookingplan/ui/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteNavigator extends StatelessWidget {

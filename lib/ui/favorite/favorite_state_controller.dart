@@ -1,9 +1,7 @@
 import 'package:cookingplan/entity/Favorite.dart';
 import 'package:cookingplan/entity/Food.dart';
 import 'package:cookingplan/repository/FavoriteRepository.dart';
-import 'package:cookingplan/repository/FoodRepository.dart';
 import 'package:cookingplan/ui/favorite/favorite_state.dart';
-import 'package:cookingplan/ui/home/home_state.dart';
 import 'package:cookingplan/ui/search/search_state.dart';
 import 'package:state_notifier/state_notifier.dart';
 
@@ -20,14 +18,7 @@ class FavoriteStateController extends StateNotifier<FavoriteState> with LocatorM
   }
 
   void addFavorite(SearchResultItem item, List<Food> foods) async {
-    Favorite favorite = Favorite.now(
-        title: item.title,
-        description: item.description,
-        foods: foods,
-        link: item.link,
-        displayLink: item.displayLink,
-        thumbnail: item.thumbnail
-    );
+    Favorite favorite = Favorite.now(title: item.title, description: item.description, foods: foods, link: item.link, displayLink: item.displayLink, thumbnail: item.thumbnail);
     if (await favoriteRepository.isExist(favorite.link)) return;
 
     await favoriteRepository.saveFavorite(favorite);

@@ -26,7 +26,9 @@ class FavoritePage extends StatelessWidget {
               itemCount: context.select((FavoriteState s) => s.favorites).length,
               itemBuilder: (context, position) {
                 List<Favorite> favorites = context.select((FavoriteState s) => s.favorites);
-                return _FavoriteItem(favorite: favorites[position],);
+                return _FavoriteItem(
+                  favorite: favorites[position],
+                );
               },
             ),
           ),
@@ -49,10 +51,10 @@ class _FavoriteItem extends StatelessWidget {
     return InkWell(
       onTap: () async {
         InAppBrowser nativeBrowser = InAppBrowser();
-        nativeBrowser.open(
+        nativeBrowser.openUrl(
           url: favorite.link,
           options: InAppBrowserClassOptions(
-            inAppBrowserOptions: InAppBrowserOptions(),
+            crossPlatform: InAppBrowserOptions(),
           ),
         );
       },
@@ -69,34 +71,50 @@ class _FavoriteItem extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(width: 16.0,),
-            Expanded(child: Column(
-              children: <Widget>[
-                Text(favorite.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.subtitle1,),
-                Text(favorite.description, maxLines: 3, overflow: TextOverflow.ellipsis,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    ButtonTheme(
-                      minWidth: 32.0,
-                      height: 32.0,
-                      padding: EdgeInsets.zero,
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      child: FlatButton(
-                        onPressed: () {
-                          context.read<FavoriteStateController>().deleteFavorite(favorite.link);
-                        },
-                        child: Icon(Icons.delete, size: 24.0, color: Colors.grey,),
+            SizedBox(
+              width: 16.0,
+            ),
+            Expanded(
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    favorite.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.subtitle1,
+                  ),
+                  Text(
+                    favorite.description,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      ButtonTheme(
+                        minWidth: 32.0,
+                        height: 32.0,
+                        padding: EdgeInsets.zero,
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        child: FlatButton(
+                          onPressed: () {
+                            context.read<FavoriteStateController>().deleteFavorite(favorite.link);
+                          },
+                          child: Icon(
+                            Icons.delete,
+                            size: 24.0,
+                            color: Colors.grey,
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
-            ),),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 }
-

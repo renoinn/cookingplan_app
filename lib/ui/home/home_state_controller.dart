@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:cookingplan/entity/Food.dart';
 import 'package:cookingplan/entity/UsedFood.dart';
 import 'package:cookingplan/repository/FoodRepository.dart';
@@ -26,7 +24,7 @@ class HomeStateController extends StateNotifier<HomeState> with LocatorMixin {
     List<Food> foods = List<Food>.from(state.foods)..add(food);
     state = state.copyWith(foods: foods);
   }
-  
+
   void deleteFood(Food food) async {
     await usedFoodRepository.saveUsedFood(UsedFood.fromFood(food: food));
     await food.delete();

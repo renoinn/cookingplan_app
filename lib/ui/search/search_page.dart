@@ -1,15 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cookingplan/ui/favorite/favorite_state.dart';
-import 'package:cookingplan/ui/favorite/favorite_state_controller.dart';
-import 'package:cookingplan/ui/home/home_state_controller.dart';
 import 'package:cookingplan/ui/search/search_state.dart';
 import 'package:cookingplan/ui/search/search_state_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 final searchPageKey = GlobalKey<ScaffoldState>();
+
 class SearchPage extends StatelessWidget {
   const SearchPage({
     Key key,
@@ -56,10 +53,10 @@ class _SearchPageResultItem extends StatelessWidget {
     return InkWell(
       onTap: () async {
         InAppBrowser nativeBrowser = InAppBrowser();
-        nativeBrowser.open(
+        nativeBrowser.openUrl(
           url: result.link,
           options: InAppBrowserClassOptions(
-            inAppBrowserOptions: InAppBrowserOptions(),
+            crossPlatform: InAppBrowserOptions(),
           ),
         );
       },
@@ -76,28 +73,41 @@ class _SearchPageResultItem extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(width: 16.0,),
-            Expanded(child: Column(
-              children: <Widget>[
-                Text(result.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.subtitle1,),
-                Text(result.description, maxLines: 3, overflow: TextOverflow.ellipsis,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    FavoriteButton(
-                      favorite: result.favorite,
-                      onPressed: () {
-                        if (result.favorite) {
-                          context.read<SearchStateController>().deleteFavorite(result.link);
-                        } else {
-                          context.read<SearchStateController>().addFavorite(result);
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ),),
+            SizedBox(
+              width: 16.0,
+            ),
+            Expanded(
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    result.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.subtitle1,
+                  ),
+                  Text(
+                    result.description,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      FavoriteButton(
+                        favorite: result.favorite,
+                        onPressed: () {
+                          if (result.favorite) {
+                            context.read<SearchStateController>().deleteFavorite(result.link);
+                          } else {
+                            context.read<SearchStateController>().addFavorite(result);
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -124,7 +134,10 @@ class FavoriteButton extends StatelessWidget {
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       child: FlatButton(
         onPressed: onPressed,
-        child: Icon(favorite ? Icons.star : Icons.star_border, size: 24.0,),
+        child: Icon(
+          favorite ? Icons.star : Icons.star_border,
+          size: 24.0,
+        ),
       ),
     );
   }
