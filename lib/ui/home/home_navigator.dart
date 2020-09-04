@@ -2,12 +2,12 @@ import 'package:cookingplan/ui/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 class HomeNavigator extends StatelessWidget {
-  final GlobalKey<NavigatorState> navigatorKey;
-
   const HomeNavigator({
     Key key,
     this.navigatorKey,
   }) : super(key: key);
+
+  final GlobalKey<NavigatorState> navigatorKey;
 
   @override
   Widget build(BuildContext context) {

@@ -15,6 +15,7 @@ class FavoritePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Favorite> favorites = context.select((FavoriteState s) => s.favorites);
     return Scaffold(
       body: Scrollbar(
         child: SafeArea(
@@ -23,9 +24,8 @@ class FavoritePage extends StatelessWidget {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               separatorBuilder: (context, position) => const Divider(),
-              itemCount: context.select((FavoriteState s) => s.favorites).length,
+              itemCount: favorites.length,
               itemBuilder: (context, position) {
-                List<Favorite> favorites = context.select((FavoriteState s) => s.favorites);
                 return _FavoriteItem(
                   favorite: favorites[position],
                 );

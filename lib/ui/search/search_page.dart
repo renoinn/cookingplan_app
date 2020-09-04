@@ -30,7 +30,7 @@ class SearchPage extends StatelessWidget {
                 context.read<SearchStateController>().search();
                 return CircularProgressIndicator();
               }
-              SearchResultItem result = context.select((SearchState s) => s.results)[position];
+              SearchResultItem result = results[position];
               return _SearchPageResultItem(key: ValueKey(result.link), result: result);
             },
           ),

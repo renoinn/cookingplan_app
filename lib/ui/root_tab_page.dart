@@ -101,22 +101,22 @@ class _RootTabPageState extends State<RootTabPage> {
 }
 
 class _TabModel {
+  _TabModel(this.key, this.index, this.icon, this.title, this.navigator);
+
   final GlobalKey key;
   final int index;
   final IconData icon;
   final String title;
   final Widget navigator;
-
-  _TabModel(this.key, this.index, this.icon, this.title, this.navigator);
 }
 
 class _NavigationButton extends StatelessWidget {
+  const _NavigationButton({Key key, @required this.icon, @required this.title, @required this.onPressed, @required this.selected}) : super(key: key);
+
   final IconData icon;
   final String title;
   final VoidCallback onPressed;
   final bool selected;
-
-  const _NavigationButton({Key key, @required this.icon, @required this.title, @required this.onPressed, @required this.selected}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -2,12 +2,12 @@ import 'package:cookingplan/ui/favorite/favorite_page.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteNavigator extends StatelessWidget {
-  final GlobalKey<NavigatorState> navigatorKey;
-
   const FavoriteNavigator({
     Key key,
     this.navigatorKey,
   }) : super(key: key);
+
+  final GlobalKey<NavigatorState> navigatorKey;
 
   @override
   Widget build(BuildContext context) {

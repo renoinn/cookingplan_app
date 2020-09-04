@@ -1,8 +1,8 @@
 import 'package:cookingplan/entity/Food.dart';
 import 'package:cookingplan/entity/UsedFood.dart';
 import 'package:cookingplan/repository/SearchRepository.dart';
-import 'package:cookingplan/ui/home/home_state_controller.dart';
 import 'package:cookingplan/ui/home/home_state.dart';
+import 'package:cookingplan/ui/home/home_state_controller.dart';
 import 'package:cookingplan/ui/search/search_page.dart';
 import 'package:cookingplan/ui/search/search_state.dart';
 import 'package:cookingplan/ui/search/search_state_controller.dart';
@@ -15,7 +15,6 @@ const _kFoodFormHeight = 140.0;
 const _kFoodFormMinimumHeight = 96.0;
 
 class HomePage extends StatelessWidget {
-
   static const String routeName = 'home/';
 
   const HomePage({
@@ -24,6 +23,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final foods = context.select((HomeState s) => s.foods);
     // TODO showLicensePage
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
@@ -40,7 +40,10 @@ class HomePage extends StatelessWidget {
                         children: <Widget>[
                           Align(
                             alignment: Alignment.center,
-                            child: Text('家にある食材', style: Theme.of(context).textTheme.headline5,),
+                            child: Text(
+                              '家にある食材',
+                              style: Theme.of(context).textTheme.headline5,
+                            ),
                           ),
                           Align(
                             alignment: Alignment.centerRight,
@@ -58,10 +61,11 @@ class HomePage extends StatelessWidget {
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         separatorBuilder: (context, position) => const Divider(),
-                        itemCount: context.select((HomeState s) => s.foods).length,
+                        itemCount: foods.length,
                         itemBuilder: (context, position) {
-                          List<Food> foods = context.select((HomeState s) => s.foods);
-                          return _FoodListItem(food: foods[position],);
+                          return _FoodListItem(
+                            food: foods[position],
+                          );
                         },
                       ),
                     ],
@@ -101,28 +105,28 @@ class _SearchMealsButton extends StatelessWidget {
             // TODO show snack bar
             return;
           }
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) {
-                SearchState searchState = SearchState(selectedFoods: selectedFoods);
-                return Provider<SearchRepository>(
-                  create: (context) => SearchRepository(),
-                  child: StateNotifierProvider<SearchStateController, SearchState>(
-                    create: (context) => SearchStateController(searchState),
-                    child: Consumer<SearchStateController>(
-                      builder: (context, controller, _) {
-                        controller.search();
-                        return const SearchPage();
-                      },
-                    ),
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) {
+              SearchState searchState = SearchState(selectedFoods: selectedFoods);
+              return Provider<SearchRepository>(
+                create: (context) => SearchRepository(),
+                child: StateNotifierProvider<SearchStateController, SearchState>(
+                  create: (context) => SearchStateController(searchState),
+                  child: Consumer<SearchStateController>(
+                    builder: (context, controller, _) {
+                      controller.search();
+                      return const SearchPage();
+                    },
                   ),
-                );
-              },
-            )
-          );
+                ),
+              );
+            },
+          ));
         },
         icon: Icon(Icons.search),
-        label: Text('献立を探す ',),
+        label: Text(
+          '献立を探す ',
+        ),
       ),
     );
   }
@@ -130,7 +134,8 @@ class _SearchMealsButton extends StatelessWidget {
 
 class _FoodListItem extends StatelessWidget {
   const _FoodListItem({
-    Key key, this.food,
+    Key key,
+    this.food,
   }) : super(key: key);
 
   final Food food;
@@ -141,17 +146,17 @@ class _FoodListItem extends StatelessWidget {
       key: ValueKey(food.name),
       onDismissed: (direction) {
         context.read<HomeStateController>().deleteFood(food);
-        Scaffold.of(context).showSnackBar(
-          SnackBar(
-            content: Text('${food.name}を消費しました'),
-            action: SnackBarAction(
-              onPressed: () => homePageKey.currentContext.read<HomeStateController>().undoDelete(food),
-              label: '元に戻す',
-            ),
-          )
-        );
+        Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text('${food.name}を消費しました'),
+          action: SnackBarAction(
+            onPressed: () => homePageKey.currentContext.read<HomeStateController>().undoDelete(food),
+            label: '元に戻す',
+          ),
+        ));
       },
-      background: Container(color: Colors.red,),
+      background: Container(
+        color: Colors.red,
+      ),
       child: ListTile(
         onTap: () {
           if (!context.read<HomeState>().selectedFoods.contains(food)) {
@@ -163,7 +168,10 @@ class _FoodListItem extends StatelessWidget {
         title: Text(food.name),
         trailing: Visibility(
           visible: context.select((HomeState s) => s.selectedFoods).contains(food),
-          child: Icon(Icons.check, color: Colors.green,),
+          child: Icon(
+            Icons.check,
+            color: Colors.green,
+          ),
         ),
       ),
     );
@@ -206,8 +214,7 @@ class _FoodFormState extends State<_FoodForm> {
                         label: Text(usedFood.name),
                         onPressed: () {
                           _food.text = usedFood.name;
-                        }
-                    ),
+                        }),
                   );
                 }).toList(),
               ],
@@ -218,9 +225,7 @@ class _FoodFormState extends State<_FoodForm> {
               Expanded(
                 child: TextFormField(
                   controller: _food,
-                  decoration: InputDecoration(
-                      hintText: '食材を追加'
-                  ),
+                  decoration: InputDecoration(hintText: '食材を追加'),
                 ),
               ),
               FlatButton(
@@ -240,4 +245,3 @@ class _FoodFormState extends State<_FoodForm> {
     );
   }
 }
-
