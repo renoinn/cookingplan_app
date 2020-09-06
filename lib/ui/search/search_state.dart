@@ -1,12 +1,11 @@
-import 'package:cookingplan/entity/Food.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:cookingplan/entity/food.dart';
 import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'search_state.freezed.dart';
 
 @freezed
 abstract class SearchState with _$SearchState {
-
   factory SearchState({
     @Default(<Food>[]) List<Food> selectedFoods,
     @Default(<SearchResultItem>[]) List<SearchResultItem> results,
@@ -16,7 +15,6 @@ abstract class SearchState with _$SearchState {
 
 @freezed
 abstract class SearchResultItem with _$SearchResultItem {
-
   factory SearchResultItem({
     String title,
     String description,

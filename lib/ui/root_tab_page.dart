@@ -77,7 +77,7 @@ class _RootTabPageState extends State<RootTabPage> {
   }
 
   Future<bool> _onWillPop() async {
-    final GlobalKey<NavigatorState> key = _models[_currentIndex].navigator.key;
+    final key = _models[_currentIndex].navigator.key as GlobalKey<NavigatorState>;
     final isFirstRouteInCurrentTab = !await key.currentState.maybePop();
     if (isFirstRouteInCurrentTab) {
       if (_currentIndex != 0) {
@@ -89,9 +89,9 @@ class _RootTabPageState extends State<RootTabPage> {
     return isFirstRouteInCurrentTab;
   }
 
-  _onPressNavigationButton(int index) {
+  void _onPressNavigationButton(int index) {
     if (_currentIndex == index) {
-      final GlobalKey<NavigatorState> key = _models[index].key;
+      final key = _models[index].key as GlobalKey<NavigatorState>;
       key.currentState.popUntil((route) => route.isFirst);
     }
     setState(() {

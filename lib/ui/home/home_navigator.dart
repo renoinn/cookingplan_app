@@ -14,10 +14,10 @@ class HomeNavigator extends StatelessWidget {
     return Navigator(
       key: navigatorKey,
       initialRoute: HomePage.routeName,
-      onGenerateRoute: (RouteSettings settings) {
-        return MaterialPageRoute(
+      onGenerateRoute: (settings) {
+        return MaterialPageRoute<dynamic>(
           settings: settings,
-          builder: (BuildContext context) {
+          builder: (context) {
             switch (settings.name) {
               case HomePage.routeName:
                 return const HomePage();

@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'CustomSearchResponse.dart';
 
@@ -15,6 +15,7 @@ CustomSearchResponse _$CustomSearchResponseFromJson(Map<String, dynamic> json) {
 class _$CustomSearchResponseTearOff {
   const _$CustomSearchResponseTearOff();
 
+// ignore: unused_element
   _CustomSearchResponse call(
       {String kind,
       Map<String, dynamic> url,
@@ -280,6 +281,7 @@ CustomSearchQueries _$CustomSearchQueriesFromJson(Map<String, dynamic> json) {
 class _$CustomSearchQueriesTearOff {
   const _$CustomSearchQueriesTearOff();
 
+// ignore: unused_element
   _CustomSearchQueries call(
       {List<CustomSearchRequest> request,
       List<CustomSearchNextPage> nextPage}) {
@@ -449,6 +451,7 @@ CustomSearchRequest _$CustomSearchRequestFromJson(Map<String, dynamic> json) {
 class _$CustomSearchRequestTearOff {
   const _$CustomSearchRequestTearOff();
 
+// ignore: unused_element
   _CustomSearchRequest call(
       {String title,
       String totalResults,
@@ -764,6 +767,7 @@ CustomSearchNextPage _$CustomSearchNextPageFromJson(Map<String, dynamic> json) {
 class _$CustomSearchNextPageTearOff {
   const _$CustomSearchNextPageTearOff();
 
+// ignore: unused_element
   _CustomSearchNextPage call(
       {String title,
       String totalResults,
@@ -1079,6 +1083,7 @@ CustomSearchItem _$CustomSearchItemFromJson(Map<String, dynamic> json) {
 class _$CustomSearchItemTearOff {
   const _$CustomSearchItemTearOff();
 
+// ignore: unused_element
   _CustomSearchItem call(
       {String kind,
       String title,
@@ -1452,6 +1457,7 @@ CustomSearchPageMap _$CustomSearchPageMapFromJson(Map<String, dynamic> json) {
 class _$CustomSearchPageMapTearOff {
   const _$CustomSearchPageMapTearOff();
 
+// ignore: unused_element
   _CustomSearchPageMap call(
       {List<Map<String, dynamic>> thumbnail,
       @JsonKey(name: 'cse_thumbnail') List<Map<String, dynamic>> cseThumbnail,

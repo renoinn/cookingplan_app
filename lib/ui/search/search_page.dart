@@ -14,7 +14,7 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<SearchResultItem> results = context.select((SearchState s) => s.results);
+    var results = context.select<SearchState, List<SearchResultItem>>((s) => s.results);
     return Scaffold(
       key: searchPageKey,
       appBar: AppBar(),
@@ -30,7 +30,7 @@ class SearchPage extends StatelessWidget {
                 context.read<SearchStateController>().search();
                 return CircularProgressIndicator();
               }
-              SearchResultItem result = results[position];
+              var result = results[position];
               return _SearchPageResultItem(key: ValueKey(result.link), result: result);
             },
           ),
@@ -52,8 +52,8 @@ class _SearchPageResultItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        InAppBrowser nativeBrowser = InAppBrowser();
-        nativeBrowser.openUrl(
+        var nativeBrowser = InAppBrowser();
+        await nativeBrowser.openUrl(
           url: result.link,
           options: InAppBrowserClassOptions(
             crossPlatform: InAppBrowserOptions(),

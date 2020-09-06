@@ -1,38 +1,39 @@
 import 'dart:async';
 
-import 'package:cookingplan/entity/Food.dart';
-import 'package:hive/hive.dart';
-
-const FOODS_BOX = 'foods';
+import 'package:cookingplan/database.dart';
+import 'package:cookingplan/entity/food.dart';
+import 'package:flutter/foundation.dart';
 
 class FoodRepository {
-  FoodRepository() {
-    initBox();
-  }
-
-  Completer<Box<Food>> _openBox = Completer();
-
-  void initBox() async {
-    Hive.openBox<Food>(FOODS_BOX).then((box) => _openBox.complete(box));
-  }
+  const FoodRepository();
 
   Future<List<Food>> getFoods() async {
-    return _openBox.future.then((box) {
-      return box.values.toList();
-    });
+    var db = await DatabaseProvider.instance().database;
+    var result = await db.query(describeEnum(TableName.food), where: 'used = ?', whereArgs: <int>[0]);
+    return result.map((item) => Food.fromJson(item)).toList();
+  }
+
+  Future<List<Food>> getUsedFoods() async {
+    var db = await DatabaseProvider.instance().database;
+    var result = await db.query(describeEnum(TableName.food), where: 'used = ?', whereArgs: <int>[1]);
+    return result.map((item) => Food.fromJson(item)).toList();
   }
 
   Future<bool> isExist(String name) async {
-    return _openBox.future.then((box) {
-      List<Food> item = box.values.where((element) => element.name == name).toList();
-      return item.isNotEmpty;
-    });
+    var db = await DatabaseProvider.instance().database;
+    var result = await db.query(describeEnum(TableName.food), where: 'name = ?', whereArgs: <String>[name]);
+    return result.isNotEmpty;
   }
 
-  Future<void> saveFood(Food food) async {
-    _openBox.future.then((box) {
-      box.add(food);
-    });
+  Future<Food> saveFood(Food food) async {
+    var db = await DatabaseProvider.instance().database;
+    var id = await db.insert(describeEnum(TableName.food), food.toJson());
+    return food.copyWith(id: id);
   }
 
+  Future<int> used(Food food) async {
+    var db = await DatabaseProvider.instance().database;
+    var id = await db.update(describeEnum(TableName.food), food.toJson(), where: 'id = ?', whereArgs: <int>[food.id]);
+    return id;
+  }
 }

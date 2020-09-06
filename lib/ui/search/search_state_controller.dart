@@ -1,5 +1,4 @@
 import 'package:cookingplan/repository/FavoriteRepository.dart';
-import 'package:cookingplan/response/CustomSearchResponse.dart';
 import 'package:cookingplan/repository/SearchRepository.dart';
 import 'package:cookingplan/ui/favorite/favorite_state_controller.dart';
 import 'package:cookingplan/ui/search/search_state.dart';
@@ -13,22 +12,22 @@ class SearchStateController extends StateNotifier<SearchState> with LocatorMixin
 
   FavoriteStateController get favoriteStateController => read<FavoriteStateController>();
 
-  void search({int page = 0}) async {
-    String query = state.selectedFoods.map((food) => food.name).join(' ');
-    int nextPage = state.page + 1;
-    CustomSearchResponse response = await searchRepository.search(query: query, page: nextPage);
+  Future<void> search({int page = 0}) async {
+    var query = state.selectedFoods.map((food) => food.name).join(' ');
+    var nextPage = state.page + 1;
+    var response = await searchRepository.search(query: query, page: nextPage);
 
-    List<SearchResultItem> results = List<SearchResultItem>.from(state.results);
-    for(int i = 0; i < response.items.length; i++) {
-      CustomSearchItem item = response.items[i];
+    var results = List<SearchResultItem>.from(state.results);
+    for (var i = 0; i < response.items.length; i++) {
+      var item = response.items[i];
       Map thumbnail = item.pageMap.cseThumbnail?.first ?? item.pageMap.thumbnail?.first;
-      bool favorite = await favoriteRepository.isExist(item.link);
+      var favorite = await favoriteRepository.isExist(item.link);
       results.add(SearchResultItem(
         title: item.title,
         description: item.snippet,
         link: item.link,
         displayLink: item.displayLink,
-        thumbnail: thumbnail['src'],
+        thumbnail: thumbnail['src'] as String,
         favorite: favorite,
       ));
     }
@@ -36,8 +35,8 @@ class SearchStateController extends StateNotifier<SearchState> with LocatorMixin
   }
 
   void addFavorite(SearchResultItem item) {
-    List<SearchResultItem> results = List<SearchResultItem>.from(state.results);
-    int index = results.indexWhere((element) => element.link == item.link);
+    var results = List<SearchResultItem>.from(state.results);
+    var index = results.indexWhere((element) => element.link == item.link);
     results[index] = results[index].copyWith(favorite: true);
     state = state.copyWith(results: results);
 
@@ -45,8 +44,8 @@ class SearchStateController extends StateNotifier<SearchState> with LocatorMixin
   }
 
   void deleteFavorite(String link) {
-    List<SearchResultItem> results = List<SearchResultItem>.from(state.results);
-    int index = results.indexWhere((element) => element.link == link);
+    var results = List<SearchResultItem>.from(state.results);
+    var index = results.indexWhere((element) => element.link == link);
     results[index] = results[index].copyWith(favorite: false);
     state = state.copyWith(results: results);
 

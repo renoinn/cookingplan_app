@@ -1,44 +1,33 @@
 import 'dart:async';
 
-import 'package:cookingplan/entity/Favorite.dart';
-import 'package:hive/hive.dart';
-
-const FAVORITE_BOX = 'favorites';
+import 'package:cookingplan/database.dart';
+import 'package:cookingplan/entity/favorite.dart';
+import 'package:flutter/foundation.dart';
 
 class FavoriteRepository {
-  FavoriteRepository() {
-    initBox();
-  }
-
-  Completer<Box<Favorite>> _openBox = Completer();
-
-  void initBox() async {
-    Hive.openBox<Favorite>(FAVORITE_BOX).then((box) => _openBox.complete(box));
-  }
+  FavoriteRepository();
 
   Future<List<Favorite>> getFavorites() async {
-    return _openBox.future.then((box) {
-      return box.values.toList();
-    });
+    var db = await DatabaseProvider.instance().database;
+    var result = await db.query(describeEnum(TableName.favorite));
+    return result.map((item) => Favorite.fromJson(item)).toList();
   }
 
-  Future<void> saveFavorite(Favorite favorite) async {
-    _openBox.future.then((box) {
-      box.add(favorite);
-    });
+  Future<Favorite> saveFavorite(Favorite favorite) async {
+    var db = await DatabaseProvider.instance().database;
+    var id = await db.insert(describeEnum(TableName.favorite), favorite.toJson());
+    return favorite.copyWith(id: id);
   }
 
   Future<bool> isExist(String link) async {
-    return _openBox.future.then((box) {
-      List<Favorite> item = box.values.where((element) => element.link == link).toList();
-      return item.isNotEmpty;
-    });
+    var db = await DatabaseProvider.instance().database;
+    var result = await db.query(describeEnum(TableName.favorite), where: 'link = ?', whereArgs: <String>[link]);
+    return result.isNotEmpty;
   }
 
-  Future<void> deleteFavorite(String link) async {
-    _openBox.future.then((box) {
-      Favorite favorite = box.values.firstWhere((element) => element.link == link);
-      favorite.delete();
-    });
+  Future<int> deleteFavorite(String link) async {
+    var db = await DatabaseProvider.instance().database;
+    var id = await db.delete(describeEnum(TableName.favorite), where: 'link = ?', whereArgs: <String>[link]);
+    return id;
   }
 }

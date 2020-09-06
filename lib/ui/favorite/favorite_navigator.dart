@@ -14,10 +14,10 @@ class FavoriteNavigator extends StatelessWidget {
     return Navigator(
       key: navigatorKey,
       initialRoute: FavoritePage.routeName,
-      onGenerateRoute: (RouteSettings settings) {
-        return MaterialPageRoute(
+      onGenerateRoute: (settings) {
+        return MaterialPageRoute<dynamic>(
           settings: settings,
-          builder: (BuildContext context) {
+          builder: (context) {
             switch (settings.name) {
               case FavoritePage.routeName:
                 return const FavoritePage();

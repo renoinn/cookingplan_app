@@ -1,5 +1,4 @@
-import 'package:cookingplan/entity/Food.dart';
-import 'package:cookingplan/entity/UsedFood.dart';
+import 'package:cookingplan/entity/food.dart';
 import 'package:cookingplan/repository/SearchRepository.dart';
 import 'package:cookingplan/ui/home/home_state.dart';
 import 'package:cookingplan/ui/home/home_state_controller.dart';
@@ -23,7 +22,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final foods = context.select((HomeState s) => s.foods);
+    final foods = context.select<HomeState, List<Food>>((s) => s.foods);
     // TODO showLicensePage
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
@@ -97,17 +96,17 @@ class _SearchMealsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      visible: context.select((HomeState s) => s.selectedFoods).isNotEmpty,
+      visible: context.select<HomeState, List<Food>>((s) => s.selectedFoods).isNotEmpty,
       child: FloatingActionButton.extended(
         onPressed: () {
-          List<Food> selectedFoods = context.read<HomeState>().selectedFoods;
+          var selectedFoods = context.read<HomeState>().selectedFoods;
           if (selectedFoods.isEmpty) {
             // TODO show snack bar
             return;
           }
-          Navigator.of(context).push(MaterialPageRoute(
+          Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
             builder: (context) {
-              SearchState searchState = SearchState(selectedFoods: selectedFoods);
+              var searchState = SearchState(selectedFoods: selectedFoods);
               return Provider<SearchRepository>(
                 create: (context) => SearchRepository(),
                 child: StateNotifierProvider<SearchStateController, SearchState>(
@@ -167,7 +166,7 @@ class _FoodListItem extends StatelessWidget {
         },
         title: Text(food.name),
         trailing: Visibility(
-          visible: context.select((HomeState s) => s.selectedFoods).contains(food),
+          visible: context.select<HomeState, List<Food>>((s) => s.selectedFoods).contains(food),
           child: Icon(
             Icons.check,
             color: Colors.green,
@@ -188,11 +187,11 @@ class _FoodForm extends StatefulWidget {
 }
 
 class _FoodFormState extends State<_FoodForm> {
-  TextEditingController _food = TextEditingController();
+  final TextEditingController _food = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    List<UsedFood> usedFoods = context.select((HomeState s) => s.usedFoods);
+    var usedFoods = <Food>[]; //context.select((HomeState s) => s.usedFoods);
     final boxHeight = usedFoods.isNotEmpty ? _kFoodFormHeight : _kFoodFormMinimumHeight;
     return Container(
       height: boxHeight,
@@ -230,9 +229,7 @@ class _FoodFormState extends State<_FoodForm> {
               ),
               FlatButton(
                 onPressed: () {
-                  Food food = Food.withName(
-                    name: _food.text,
-                  );
+                  var food = Food.withName(_food.text);
                   context.read<HomeStateController>().addFood(food);
                   _food.clear();
                 },

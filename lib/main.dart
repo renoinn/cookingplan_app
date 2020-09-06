@@ -1,42 +1,28 @@
-import 'package:cookingplan/entity/Favorite.dart';
-import 'package:cookingplan/entity/Food.dart';
-import 'package:cookingplan/entity/UsedFood.dart';
 import 'package:cookingplan/repository/FavoriteRepository.dart';
 import 'package:cookingplan/repository/FoodRepository.dart';
-import 'package:cookingplan/repository/UsedFoodRepository.dart';
 import 'package:cookingplan/theme.dart';
 import 'package:cookingplan/ui/favorite/favorite_state.dart';
 import 'package:cookingplan/ui/favorite/favorite_state_controller.dart';
-import 'package:cookingplan/ui/home/home_state_controller.dart';
 import 'package:cookingplan/ui/home/home_state.dart';
+import 'package:cookingplan/ui/home/home_state_controller.dart';
 import 'package:cookingplan/ui/root_tab_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
-import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
-void main() async {
-  await Hive.initFlutter();
-  Hive.registerAdapter(StorageMethodAdapter());
-  Hive.registerAdapter(FoodAdapter());
-  Hive.registerAdapter(UsedFoodAdapter());
-  Hive.registerAdapter(FavoriteAdapter());
+void main() {
   runApp(App());
 }
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    HomeState homeState = HomeState();
-    FavoriteState favoriteState = FavoriteState();
+    var homeState = HomeState();
+    var favoriteState = FavoriteState();
     return MultiProvider(
       providers: [
         Provider<FoodRepository>(
           create: (context) => FoodRepository(),
-        ),
-        Provider<UsedFoodRepository>(
-          create: (context) => UsedFoodRepository(),
         ),
         Provider<FavoriteRepository>(
           create: (context) => FavoriteRepository(),

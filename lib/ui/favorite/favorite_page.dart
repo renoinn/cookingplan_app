@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cookingplan/entity/Favorite.dart';
+import 'package:cookingplan/entity/favorite.dart';
 import 'package:cookingplan/ui/favorite/favorite_state.dart';
 import 'package:cookingplan/ui/favorite/favorite_state_controller.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class FavoritePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Favorite> favorites = context.select((FavoriteState s) => s.favorites);
+    var favorites = context.select<FavoriteState, List<Favorite>>((s) => s.favorites);
     return Scaffold(
       body: Scrollbar(
         child: SafeArea(
@@ -50,8 +50,8 @@ class _FavoriteItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        InAppBrowser nativeBrowser = InAppBrowser();
-        nativeBrowser.openUrl(
+        var nativeBrowser = InAppBrowser();
+        await nativeBrowser.openUrl(
           url: favorite.link,
           options: InAppBrowserClassOptions(
             crossPlatform: InAppBrowserOptions(),

@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'home_state.dart';
 
@@ -12,10 +12,11 @@ T _$identity<T>(T value) => value;
 class _$HomeStateTearOff {
   const _$HomeStateTearOff();
 
+// ignore: unused_element
   _HomeState call(
       {List<Food> foods = const <Food>[],
       List<Food> selectedFoods = const <Food>[],
-      List<UsedFood> usedFoods = const <UsedFood>[]}) {
+      List<Food> usedFoods = const <Food>[]}) {
     return _HomeState(
       foods: foods,
       selectedFoods: selectedFoods,
@@ -30,7 +31,7 @@ const $HomeState = _$HomeStateTearOff();
 mixin _$HomeState {
   List<Food> get foods;
   List<Food> get selectedFoods;
-  List<UsedFood> get usedFoods;
+  List<Food> get usedFoods;
 
   $HomeStateCopyWith<HomeState> get copyWith;
 }
@@ -38,8 +39,7 @@ mixin _$HomeState {
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res>;
-  $Res call(
-      {List<Food> foods, List<Food> selectedFoods, List<UsedFood> usedFoods});
+  $Res call({List<Food> foods, List<Food> selectedFoods, List<Food> usedFoods});
 }
 
 class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
@@ -61,7 +61,7 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
           ? _value.selectedFoods
           : selectedFoods as List<Food>,
       usedFoods:
-          usedFoods == freezed ? _value.usedFoods : usedFoods as List<UsedFood>,
+          usedFoods == freezed ? _value.usedFoods : usedFoods as List<Food>,
     ));
   }
 }
@@ -71,8 +71,7 @@ abstract class _$HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
           _HomeState value, $Res Function(_HomeState) then) =
       __$HomeStateCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {List<Food> foods, List<Food> selectedFoods, List<UsedFood> usedFoods});
+  $Res call({List<Food> foods, List<Food> selectedFoods, List<Food> usedFoods});
 }
 
 class __$HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
@@ -95,7 +94,7 @@ class __$HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
           ? _value.selectedFoods
           : selectedFoods as List<Food>,
       usedFoods:
-          usedFoods == freezed ? _value.usedFoods : usedFoods as List<UsedFood>,
+          usedFoods == freezed ? _value.usedFoods : usedFoods as List<Food>,
     ));
   }
 }
@@ -104,7 +103,7 @@ class _$_HomeState with DiagnosticableTreeMixin implements _HomeState {
   const _$_HomeState(
       {this.foods = const <Food>[],
       this.selectedFoods = const <Food>[],
-      this.usedFoods = const <UsedFood>[]})
+      this.usedFoods = const <Food>[]})
       : assert(foods != null),
         assert(selectedFoods != null),
         assert(usedFoods != null);
@@ -115,9 +114,9 @@ class _$_HomeState with DiagnosticableTreeMixin implements _HomeState {
   @JsonKey(defaultValue: const <Food>[])
   @override
   final List<Food> selectedFoods;
-  @JsonKey(defaultValue: const <UsedFood>[])
+  @JsonKey(defaultValue: const <Food>[])
   @override
-  final List<UsedFood> usedFoods;
+  final List<Food> usedFoods;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -164,14 +163,14 @@ abstract class _HomeState implements HomeState {
   const factory _HomeState(
       {List<Food> foods,
       List<Food> selectedFoods,
-      List<UsedFood> usedFoods}) = _$_HomeState;
+      List<Food> usedFoods}) = _$_HomeState;
 
   @override
   List<Food> get foods;
   @override
   List<Food> get selectedFoods;
   @override
-  List<UsedFood> get usedFoods;
+  List<Food> get usedFoods;
   @override
   _$HomeStateCopyWith<_HomeState> get copyWith;
 }
