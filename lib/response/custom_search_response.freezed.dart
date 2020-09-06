@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
-part of 'CustomSearchResponse.dart';
+part of 'custom_search_response.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -159,9 +159,7 @@ class __$CustomSearchResponseCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
-class _$_CustomSearchResponse
-    with DiagnosticableTreeMixin
-    implements _CustomSearchResponse {
+class _$_CustomSearchResponse implements _CustomSearchResponse {
   _$_CustomSearchResponse(
       {this.kind,
       this.url,
@@ -187,21 +185,8 @@ class _$_CustomSearchResponse
   final List<CustomSearchItem> items;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'CustomSearchResponse(kind: $kind, url: $url, queries: $queries, context: $context, searchInformation: $searchInformation, items: $items)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'CustomSearchResponse'))
-      ..add(DiagnosticsProperty('kind', kind))
-      ..add(DiagnosticsProperty('url', url))
-      ..add(DiagnosticsProperty('queries', queries))
-      ..add(DiagnosticsProperty('context', context))
-      ..add(DiagnosticsProperty('searchInformation', searchInformation))
-      ..add(DiagnosticsProperty('items', items));
   }
 
   @override
@@ -372,9 +357,7 @@ class __$CustomSearchQueriesCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
-class _$_CustomSearchQueries
-    with DiagnosticableTreeMixin
-    implements _CustomSearchQueries {
+class _$_CustomSearchQueries implements _CustomSearchQueries {
   _$_CustomSearchQueries({this.request, this.nextPage});
 
   factory _$_CustomSearchQueries.fromJson(Map<String, dynamic> json) =>
@@ -386,17 +369,8 @@ class _$_CustomSearchQueries
   final List<CustomSearchNextPage> nextPage;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'CustomSearchQueries(request: $request, nextPage: $nextPage)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'CustomSearchQueries'))
-      ..add(DiagnosticsProperty('request', request))
-      ..add(DiagnosticsProperty('nextPage', nextPage));
   }
 
   @override
@@ -613,9 +587,7 @@ class __$CustomSearchRequestCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
-class _$_CustomSearchRequest
-    with DiagnosticableTreeMixin
-    implements _CustomSearchRequest {
+class _$_CustomSearchRequest implements _CustomSearchRequest {
   _$_CustomSearchRequest(
       {this.title,
       this.totalResults,
@@ -650,24 +622,8 @@ class _$_CustomSearchRequest
   final String cx;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'CustomSearchRequest(title: $title, totalResults: $totalResults, searchTerms: $searchTerms, count: $count, startIndex: $startIndex, inputEncoding: $inputEncoding, outputEncoding: $outputEncoding, safe: $safe, cx: $cx)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'CustomSearchRequest'))
-      ..add(DiagnosticsProperty('title', title))
-      ..add(DiagnosticsProperty('totalResults', totalResults))
-      ..add(DiagnosticsProperty('searchTerms', searchTerms))
-      ..add(DiagnosticsProperty('count', count))
-      ..add(DiagnosticsProperty('startIndex', startIndex))
-      ..add(DiagnosticsProperty('inputEncoding', inputEncoding))
-      ..add(DiagnosticsProperty('outputEncoding', outputEncoding))
-      ..add(DiagnosticsProperty('safe', safe))
-      ..add(DiagnosticsProperty('cx', cx));
   }
 
   @override
@@ -929,9 +885,7 @@ class __$CustomSearchNextPageCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
-class _$_CustomSearchNextPage
-    with DiagnosticableTreeMixin
-    implements _CustomSearchNextPage {
+class _$_CustomSearchNextPage implements _CustomSearchNextPage {
   _$_CustomSearchNextPage(
       {this.title,
       this.totalResults,
@@ -966,24 +920,8 @@ class _$_CustomSearchNextPage
   final String cx;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'CustomSearchNextPage(title: $title, totalResults: $totalResults, searchTerms: $searchTerms, count: $count, startIndex: $startIndex, inputEncoding: $inputEncoding, outputEncoding: $outputEncoding, safe: $safe, cx: $cx)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'CustomSearchNextPage'))
-      ..add(DiagnosticsProperty('title', title))
-      ..add(DiagnosticsProperty('totalResults', totalResults))
-      ..add(DiagnosticsProperty('searchTerms', searchTerms))
-      ..add(DiagnosticsProperty('count', count))
-      ..add(DiagnosticsProperty('startIndex', startIndex))
-      ..add(DiagnosticsProperty('inputEncoding', inputEncoding))
-      ..add(DiagnosticsProperty('outputEncoding', outputEncoding))
-      ..add(DiagnosticsProperty('safe', safe))
-      ..add(DiagnosticsProperty('cx', cx));
   }
 
   @override
@@ -1279,9 +1217,7 @@ class __$CustomSearchItemCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
-class _$_CustomSearchItem
-    with DiagnosticableTreeMixin
-    implements _CustomSearchItem {
+class _$_CustomSearchItem implements _CustomSearchItem {
   _$_CustomSearchItem(
       {this.kind,
       this.title,
@@ -1323,26 +1259,8 @@ class _$_CustomSearchItem
   final CustomSearchPageMap pageMap;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'CustomSearchItem(kind: $kind, title: $title, htmlTitle: $htmlTitle, link: $link, displayLink: $displayLink, snippet: $snippet, htmlSnippet: $htmlSnippet, cacheId: $cacheId, formattedUrl: $formattedUrl, htmlFormattedUrl: $htmlFormattedUrl, pageMap: $pageMap)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'CustomSearchItem'))
-      ..add(DiagnosticsProperty('kind', kind))
-      ..add(DiagnosticsProperty('title', title))
-      ..add(DiagnosticsProperty('htmlTitle', htmlTitle))
-      ..add(DiagnosticsProperty('link', link))
-      ..add(DiagnosticsProperty('displayLink', displayLink))
-      ..add(DiagnosticsProperty('snippet', snippet))
-      ..add(DiagnosticsProperty('htmlSnippet', htmlSnippet))
-      ..add(DiagnosticsProperty('cacheId', cacheId))
-      ..add(DiagnosticsProperty('formattedUrl', formattedUrl))
-      ..add(DiagnosticsProperty('htmlFormattedUrl', htmlFormattedUrl))
-      ..add(DiagnosticsProperty('pageMap', pageMap));
   }
 
   @override
@@ -1579,9 +1497,7 @@ class __$CustomSearchPageMapCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
-class _$_CustomSearchPageMap
-    with DiagnosticableTreeMixin
-    implements _CustomSearchPageMap {
+class _$_CustomSearchPageMap implements _CustomSearchPageMap {
   _$_CustomSearchPageMap(
       {this.thumbnail,
       @JsonKey(name: 'cse_thumbnail') this.cseThumbnail,
@@ -1604,19 +1520,8 @@ class _$_CustomSearchPageMap
   final List<Map<String, dynamic>> cseImage;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'CustomSearchPageMap(thumbnail: $thumbnail, cseThumbnail: $cseThumbnail, metaTags: $metaTags, cseImage: $cseImage)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'CustomSearchPageMap'))
-      ..add(DiagnosticsProperty('thumbnail', thumbnail))
-      ..add(DiagnosticsProperty('cseThumbnail', cseThumbnail))
-      ..add(DiagnosticsProperty('metaTags', metaTags))
-      ..add(DiagnosticsProperty('cseImage', cseImage));
   }
 
   @override

@@ -1,5 +1,5 @@
-import 'package:cookingplan/repository/FavoriteRepository.dart';
-import 'package:cookingplan/repository/FoodRepository.dart';
+import 'package:cookingplan/repository/favorite_repository.dart';
+import 'package:cookingplan/repository/food_repository.dart';
 import 'package:cookingplan/theme.dart';
 import 'package:cookingplan/ui/favorite/favorite_state.dart';
 import 'package:cookingplan/ui/favorite/favorite_state_controller.dart';

@@ -1,5 +1,5 @@
 import 'package:cookingplan/entity/food.dart';
-import 'package:cookingplan/repository/FoodRepository.dart';
+import 'package:cookingplan/repository/food_repository.dart';
 import 'package:cookingplan/ui/home/home_state.dart';
 import 'package:state_notifier/state_notifier.dart';
 

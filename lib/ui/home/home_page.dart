@@ -1,5 +1,5 @@
 import 'package:cookingplan/entity/food.dart';
-import 'package:cookingplan/repository/SearchRepository.dart';
+import 'package:cookingplan/repository/search_repository.dart';
 import 'package:cookingplan/ui/home/home_state.dart';
 import 'package:cookingplan/ui/home/home_state_controller.dart';
 import 'package:cookingplan/ui/search/search_page.dart';

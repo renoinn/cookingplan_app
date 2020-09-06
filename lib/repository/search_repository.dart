@@ -1,6 +1,6 @@
 import 'package:cookingplan/env.dart';
 import 'package:cookingplan/network.dart';
-import 'package:cookingplan/response/CustomSearchResponse.dart';
+import 'package:cookingplan/response/custom_search_response.dart';
 import 'package:flutter/foundation.dart';
 
 class SearchRepository {

@@ -1,5 +1,5 @@
-import 'package:cookingplan/repository/FavoriteRepository.dart';
-import 'package:cookingplan/repository/SearchRepository.dart';
+import 'package:cookingplan/repository/favorite_repository.dart';
+import 'package:cookingplan/repository/search_repository.dart';
 import 'package:cookingplan/ui/favorite/favorite_state_controller.dart';
 import 'package:cookingplan/ui/search/search_state.dart';
 import 'package:state_notifier/state_notifier.dart';

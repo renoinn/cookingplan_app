@@ -1,12 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter/foundation.dart';
 
-part 'CustomSearchResponse.freezed.dart';
-part 'CustomSearchResponse.g.dart';
+part 'custom_search_response.freezed.dart';
+part 'custom_search_response.g.dart';
 
 @freezed
 abstract class CustomSearchResponse with _$CustomSearchResponse {
-
   factory CustomSearchResponse({
     String kind,
     Map<String, dynamic> url,
@@ -21,7 +19,6 @@ abstract class CustomSearchResponse with _$CustomSearchResponse {
 
 @freezed
 abstract class CustomSearchQueries with _$CustomSearchQueries {
-
   factory CustomSearchQueries({
     List<CustomSearchRequest> request,
     List<CustomSearchNextPage> nextPage,
@@ -32,7 +29,6 @@ abstract class CustomSearchQueries with _$CustomSearchQueries {
 
 @freezed
 abstract class CustomSearchRequest with _$CustomSearchRequest {
-
   factory CustomSearchRequest({
     String title,
     String totalResults,
@@ -50,7 +46,6 @@ abstract class CustomSearchRequest with _$CustomSearchRequest {
 
 @freezed
 abstract class CustomSearchNextPage with _$CustomSearchNextPage {
-
   factory CustomSearchNextPage({
     String title,
     String totalResults,
@@ -68,7 +63,6 @@ abstract class CustomSearchNextPage with _$CustomSearchNextPage {
 
 @freezed
 abstract class CustomSearchItem with _$CustomSearchItem {
-
   factory CustomSearchItem({
     String kind,
     String title,
@@ -80,8 +74,7 @@ abstract class CustomSearchItem with _$CustomSearchItem {
     String cacheId,
     String formattedUrl,
     String htmlFormattedUrl,
-    @JsonKey(name: 'pagemap')
-    CustomSearchPageMap pageMap,
+    @JsonKey(name: 'pagemap') CustomSearchPageMap pageMap,
   }) = _CustomSearchItem;
 
   factory CustomSearchItem.fromJson(Map<String, dynamic> json) => _$CustomSearchItemFromJson(json);
@@ -89,15 +82,11 @@ abstract class CustomSearchItem with _$CustomSearchItem {
 
 @freezed
 abstract class CustomSearchPageMap with _$CustomSearchPageMap {
-
   factory CustomSearchPageMap({
     List<Map<String, dynamic>> thumbnail,
-    @JsonKey(name: 'cse_thumbnail')
-    List<Map<String, dynamic>> cseThumbnail,
-    @JsonKey(name: 'metatags')
-    List<Map<String, dynamic>> metaTags,
-    @JsonKey(name: 'cse_image')
-    List<Map<String, dynamic>> cseImage,
+    @JsonKey(name: 'cse_thumbnail') List<Map<String, dynamic>> cseThumbnail,
+    @JsonKey(name: 'metatags') List<Map<String, dynamic>> metaTags,
+    @JsonKey(name: 'cse_image') List<Map<String, dynamic>> cseImage,
   }) = _CustomSearchPageMap;
 
   factory CustomSearchPageMap.fromJson(Map<String, dynamic> json) => _$CustomSearchPageMapFromJson(json);

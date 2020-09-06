@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'CustomSearchResponse.dart';
+part of 'custom_search_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

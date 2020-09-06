@@ -1,6 +1,6 @@
 import 'package:cookingplan/entity/favorite.dart';
 import 'package:cookingplan/entity/food.dart';
-import 'package:cookingplan/repository/FavoriteRepository.dart';
+import 'package:cookingplan/repository/favorite_repository.dart';
 import 'package:cookingplan/ui/favorite/favorite_state.dart';
 import 'package:cookingplan/ui/search/search_state.dart';
 import 'package:state_notifier/state_notifier.dart';
