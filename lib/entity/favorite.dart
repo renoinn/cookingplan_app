@@ -12,9 +12,9 @@ abstract class Favorite with _$Favorite {
     @Default('') String description,
     @Default('') String thumbnail,
     String link,
-    @Default('') String displayLink,
-    DateTime createdAt,
-    DateTime updatedAt,
+    @Default('') @JsonKey(name: 'display_link') String displayLink,
+    @JsonKey(name: 'created_at') DateTime createdAt,
+    @JsonKey(name: 'updated_at') DateTime updatedAt,
   }) = _Favorite;
 
   factory Favorite.fromJson(Map<String, dynamic> json) => _$FavoriteFromJson(json);

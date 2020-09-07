@@ -31,6 +31,13 @@ class FoodRepository {
     return food.copyWith(id: id);
   }
 
+  Future<Food> reStock(Food food) async {
+    var db = await DatabaseProvider.instance().database;
+    var unused = food.copyWith(used: false);
+    var id = await db.update(describeEnum(TableName.food), unused.toJson(), where: 'name = ?', whereArgs: <String>[food.name]);
+    return unused.copyWith(id: id);
+  }
+
   Future<int> used(Food food) async {
     var db = await DatabaseProvider.instance().database;
     var id = await db.update(describeEnum(TableName.food), food.toJson(), where: 'id = ?', whereArgs: <int>[food.id]);

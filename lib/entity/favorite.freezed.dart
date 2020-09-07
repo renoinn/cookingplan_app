@@ -22,9 +22,9 @@ class _$FavoriteTearOff {
       String description = '',
       String thumbnail = '',
       String link,
-      String displayLink = '',
-      DateTime createdAt,
-      DateTime updatedAt}) {
+      @JsonKey(name: 'display_link') String displayLink = '',
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'updated_at') DateTime updatedAt}) {
     return _Favorite(
       id: id,
       title: title,
@@ -48,8 +48,11 @@ mixin _$Favorite {
   String get description;
   String get thumbnail;
   String get link;
+  @JsonKey(name: 'display_link')
   String get displayLink;
+  @JsonKey(name: 'created_at')
   DateTime get createdAt;
+  @JsonKey(name: 'updated_at')
   DateTime get updatedAt;
 
   Map<String, dynamic> toJson();
@@ -65,9 +68,9 @@ abstract class $FavoriteCopyWith<$Res> {
       String description,
       String thumbnail,
       String link,
-      String displayLink,
-      DateTime createdAt,
-      DateTime updatedAt});
+      @JsonKey(name: 'display_link') String displayLink,
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'updated_at') DateTime updatedAt});
 }
 
 class _$FavoriteCopyWithImpl<$Res> implements $FavoriteCopyWith<$Res> {
@@ -115,9 +118,9 @@ abstract class _$FavoriteCopyWith<$Res> implements $FavoriteCopyWith<$Res> {
       String description,
       String thumbnail,
       String link,
-      String displayLink,
-      DateTime createdAt,
-      DateTime updatedAt});
+      @JsonKey(name: 'display_link') String displayLink,
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'updated_at') DateTime updatedAt});
 }
 
 class __$FavoriteCopyWithImpl<$Res> extends _$FavoriteCopyWithImpl<$Res>
@@ -164,9 +167,9 @@ class _$_Favorite with DiagnosticableTreeMixin implements _Favorite {
       this.description = '',
       this.thumbnail = '',
       this.link,
-      this.displayLink = '',
-      this.createdAt,
-      this.updatedAt})
+      @JsonKey(name: 'display_link') this.displayLink = '',
+      @JsonKey(name: 'created_at') this.createdAt,
+      @JsonKey(name: 'updated_at') this.updatedAt})
       : assert(description != null),
         assert(thumbnail != null),
         assert(displayLink != null);
@@ -187,12 +190,14 @@ class _$_Favorite with DiagnosticableTreeMixin implements _Favorite {
   final String thumbnail;
   @override
   final String link;
-  @JsonKey(defaultValue: '')
   @override
+  @JsonKey(name: 'display_link')
   final String displayLink;
   @override
+  @JsonKey(name: 'created_at')
   final DateTime createdAt;
   @override
+  @JsonKey(name: 'updated_at')
   final DateTime updatedAt;
 
   @override
@@ -271,9 +276,9 @@ abstract class _Favorite implements Favorite {
       String description,
       String thumbnail,
       String link,
-      String displayLink,
-      DateTime createdAt,
-      DateTime updatedAt}) = _$_Favorite;
+      @JsonKey(name: 'display_link') String displayLink,
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'updated_at') DateTime updatedAt}) = _$_Favorite;
 
   factory _Favorite.fromJson(Map<String, dynamic> json) = _$_Favorite.fromJson;
 
@@ -289,10 +294,13 @@ abstract class _Favorite implements Favorite {
   @override
   String get link;
   @override
+  @JsonKey(name: 'display_link')
   String get displayLink;
   @override
+  @JsonKey(name: 'created_at')
   DateTime get createdAt;
   @override
+  @JsonKey(name: 'updated_at')
   DateTime get updatedAt;
   @override
   _$FavoriteCopyWith<_Favorite> get copyWith;

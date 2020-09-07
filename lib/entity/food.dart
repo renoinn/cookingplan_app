@@ -9,8 +9,8 @@ abstract class Food with _$Food {
     @nullable int id,
     @Default('') String name,
     @BoolConverter() @Default(false) bool used,
-    DateTime createdAt,
-    DateTime updatedAt,
+    @JsonKey(name: 'created_at') DateTime createdAt,
+    @JsonKey(name: 'updated_at') DateTime updatedAt,
   }) = _Food;
 
   factory Food.fromJson(Map<String, dynamic> json) => _$FoodFromJson(json);

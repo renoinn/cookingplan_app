@@ -22,7 +22,6 @@ class DatabaseProvider {
   Database _database;
   Future<Database> get database async {
     if (_database != null) return _database;
-    // lazily instantate the db the first time it is accessed
     _database = await _initDatabase();
     return _database;
   }
@@ -59,7 +58,7 @@ class DatabaseProvider {
       description TEXT DEFAULT NULL,
       thumbnail TEXT DEFAULT NULL,
       link TEXT NOT NULL,
-      displayLink TEXT DEFAULT NULL,
+      display_link TEXT DEFAULT NULL,
       created_at TEXT NOT NULL,
       updated_at TEXT NOT NULL
     )

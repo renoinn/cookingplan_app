@@ -20,8 +20,8 @@ class _$FoodTearOff {
       {@nullable int id,
       String name = '',
       @BoolConverter() bool used = false,
-      DateTime createdAt,
-      DateTime updatedAt}) {
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'updated_at') DateTime updatedAt}) {
     return _Food(
       id: id,
       name: name,
@@ -41,7 +41,9 @@ mixin _$Food {
   String get name;
   @BoolConverter()
   bool get used;
+  @JsonKey(name: 'created_at')
   DateTime get createdAt;
+  @JsonKey(name: 'updated_at')
   DateTime get updatedAt;
 
   Map<String, dynamic> toJson();
@@ -55,8 +57,8 @@ abstract class $FoodCopyWith<$Res> {
       {@nullable int id,
       String name,
       @BoolConverter() bool used,
-      DateTime createdAt,
-      DateTime updatedAt});
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'updated_at') DateTime updatedAt});
 }
 
 class _$FoodCopyWithImpl<$Res> implements $FoodCopyWith<$Res> {
@@ -94,8 +96,8 @@ abstract class _$FoodCopyWith<$Res> implements $FoodCopyWith<$Res> {
       {@nullable int id,
       String name,
       @BoolConverter() bool used,
-      DateTime createdAt,
-      DateTime updatedAt});
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'updated_at') DateTime updatedAt});
 }
 
 class __$FoodCopyWithImpl<$Res> extends _$FoodCopyWithImpl<$Res>
@@ -132,8 +134,8 @@ class _$_Food implements _Food {
       {@nullable this.id,
       this.name = '',
       @BoolConverter() this.used = false,
-      this.createdAt,
-      this.updatedAt})
+      @JsonKey(name: 'created_at') this.createdAt,
+      @JsonKey(name: 'updated_at') this.updatedAt})
       : assert(name != null),
         assert(used != null);
 
@@ -151,8 +153,10 @@ class _$_Food implements _Food {
   @BoolConverter()
   final bool used;
   @override
+  @JsonKey(name: 'created_at')
   final DateTime createdAt;
   @override
+  @JsonKey(name: 'updated_at')
   final DateTime updatedAt;
 
   @override
@@ -202,8 +206,8 @@ abstract class _Food implements Food {
       {@nullable int id,
       String name,
       @BoolConverter() bool used,
-      DateTime createdAt,
-      DateTime updatedAt}) = _$_Food;
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'updated_at') DateTime updatedAt}) = _$_Food;
 
   factory _Food.fromJson(Map<String, dynamic> json) = _$_Food.fromJson;
 
@@ -216,8 +220,10 @@ abstract class _Food implements Food {
   @BoolConverter()
   bool get used;
   @override
+  @JsonKey(name: 'created_at')
   DateTime get createdAt;
   @override
+  @JsonKey(name: 'updated_at')
   DateTime get updatedAt;
   @override
   _$FoodCopyWith<_Food> get copyWith;

@@ -13,13 +13,13 @@ _$_Favorite _$_$_FavoriteFromJson(Map<String, dynamic> json) {
     description: json['description'] as String ?? '',
     thumbnail: json['thumbnail'] as String ?? '',
     link: json['link'] as String,
-    displayLink: json['displayLink'] as String ?? '',
-    createdAt: json['createdAt'] == null
+    displayLink: json['display_link'] as String,
+    createdAt: json['created_at'] == null
         ? null
-        : DateTime.parse(json['createdAt'] as String),
-    updatedAt: json['updatedAt'] == null
+        : DateTime.parse(json['created_at'] as String),
+    updatedAt: json['updated_at'] == null
         ? null
-        : DateTime.parse(json['updatedAt'] as String),
+        : DateTime.parse(json['updated_at'] as String),
   );
 }
 
@@ -30,7 +30,7 @@ Map<String, dynamic> _$_$_FavoriteToJson(_$_Favorite instance) =>
       'description': instance.description,
       'thumbnail': instance.thumbnail,
       'link': instance.link,
-      'displayLink': instance.displayLink,
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
+      'display_link': instance.displayLink,
+      'created_at': instance.createdAt?.toIso8601String(),
+      'updated_at': instance.updatedAt?.toIso8601String(),
     };
