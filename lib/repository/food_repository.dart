@@ -5,7 +5,7 @@ import 'package:cookingplan/entity/food.dart';
 import 'package:flutter/foundation.dart';
 
 class FoodRepository {
-  const FoodRepository();
+  FoodRepository();
 
   Future<List<Food>> getFoods() async {
     var db = await DatabaseProvider.instance().database;

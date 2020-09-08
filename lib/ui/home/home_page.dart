@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
                           Align(
                             alignment: Alignment.centerRight,
                             child: FlatButton(
-                              child: Icon(Icons.copyright),
+                              child: const Icon(Icons.copyright),
                               onPressed: () => showLicensePage(
                                 applicationName: 'クップラ',
                                 context: context,
@@ -72,14 +72,14 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            Align(
+            const Align(
               alignment: Alignment.bottomCenter,
-              child: const _FoodForm(),
+              child: _FoodForm(),
             ),
           ],
         ),
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.only(bottom: _kFoodFormHeight),
+        floatingActionButton: const Padding(
+          padding: EdgeInsets.only(bottom: _kFoodFormHeight),
           child: _SearchMealsButton(),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -122,8 +122,8 @@ class _SearchMealsButton extends StatelessWidget {
             },
           ));
         },
-        icon: Icon(Icons.search),
-        label: Text(
+        icon: const Icon(Icons.search),
+        label: const Text(
           '献立を探す ',
         ),
       ),
@@ -167,7 +167,7 @@ class _FoodListItem extends StatelessWidget {
         title: Text(food.name),
         trailing: Visibility(
           visible: context.select<HomeState, List<Food>>((s) => s.selectedFoods).contains(food),
-          child: Icon(
+          child: const Icon(
             Icons.check,
             color: Colors.green,
           ),
@@ -224,7 +224,7 @@ class _FoodFormState extends State<_FoodForm> {
               Expanded(
                 child: TextFormField(
                   controller: _food,
-                  decoration: InputDecoration(hintText: '食材を追加'),
+                  decoration: const InputDecoration(hintText: '食材を追加'),
                 ),
               ),
               FlatButton(
@@ -233,7 +233,7 @@ class _FoodFormState extends State<_FoodForm> {
                   context.read<HomeStateController>().addFood(food);
                   _food.clear();
                 },
-                child: Icon(Icons.add),
+                child: const Icon(Icons.add),
               )
             ],
           ),

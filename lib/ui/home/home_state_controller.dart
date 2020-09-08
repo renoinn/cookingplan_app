@@ -17,7 +17,11 @@ class HomeStateController extends StateNotifier<HomeState> with LocatorMixin {
   }
 
   Future<void> addFood(Food food) async {
-    await foodRepository.saveFood(food);
+    if (await foodRepository.isExist(food.name)) {
+      await foodRepository.reStock(food);
+    } else {
+      await foodRepository.saveFood(food);
+    }
     var foods = List<Food>.from(state.foods)..add(food);
     state = state.copyWith(foods: foods);
   }

@@ -6,7 +6,7 @@ part 'home_state.freezed.dart';
 
 @freezed
 abstract class HomeState with _$HomeState {
-  const factory HomeState({
+  factory HomeState({
     @Default(<Food>[]) List<Food> foods,
     @Default(<Food>[]) List<Food> selectedFoods,
     @Default(<Food>[]) List<Food> usedFoods,

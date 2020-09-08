@@ -63,7 +63,7 @@ class _FavoriteItem extends StatelessWidget {
         child: Row(
           children: <Widget>[
             ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(4.0)),
+              borderRadius: const BorderRadius.all(Radius.circular(4.0)),
               child: CachedNetworkImage(
                 imageUrl: favorite.thumbnail,
                 width: 112.0,
@@ -71,7 +71,7 @@ class _FavoriteItem extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 16.0,
             ),
             Expanded(
@@ -100,7 +100,7 @@ class _FavoriteItem extends StatelessWidget {
                           onPressed: () {
                             context.read<FavoriteStateController>().deleteFavorite(favorite.link);
                           },
-                          child: Icon(
+                          child: const Icon(
                             Icons.delete,
                             size: 24.0,
                             color: Colors.grey,

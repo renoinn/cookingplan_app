@@ -28,7 +28,7 @@ class SearchPage extends StatelessWidget {
             itemBuilder: (context, position) {
               if (results.length == position) {
                 context.read<SearchStateController>().search();
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
               }
               var result = results[position];
               return _SearchPageResultItem(key: ValueKey(result.link), result: result);
@@ -65,7 +65,7 @@ class _SearchPageResultItem extends StatelessWidget {
         child: Row(
           children: <Widget>[
             ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(4.0)),
+              borderRadius: const BorderRadius.all(Radius.circular(4.0)),
               child: CachedNetworkImage(
                 imageUrl: result.thumbnail,
                 width: 112.0,
@@ -73,7 +73,7 @@ class _SearchPageResultItem extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 16.0,
             ),
             Expanded(
