@@ -1,22 +1,22 @@
 import 'dart:async';
 
 import 'package:cookingplan/database.dart';
-import 'package:cookingplan/entity/favorite.dart';
+import 'package:cookingplan/entity/recipe.dart';
 import 'package:flutter/foundation.dart';
 
 class FavoriteRepository {
   FavoriteRepository();
 
-  Future<List<Favorite>> getFavorites() async {
+  Future<List<Recipe>> getFavorites() async {
     var db = await DatabaseProvider.instance().database;
     var result = await db.query(describeEnum(TableName.favorite));
-    return result.map((item) => Favorite.fromJson(item)).toList();
+    return result.map((item) => Recipe.fromJson(item)).toList();
   }
 
-  Future<Favorite> saveFavorite(Favorite favorite) async {
+  Future<Recipe> saveFavorite(Recipe recipe) async {
     var db = await DatabaseProvider.instance().database;
-    var id = await db.insert(describeEnum(TableName.favorite), favorite.toJson());
-    return favorite.copyWith(id: id);
+    var id = await db.insert(describeEnum(TableName.favorite), recipe.toJson());
+    return recipe.copyWith(id: id);
   }
 
   Future<bool> isExist(String link) async {

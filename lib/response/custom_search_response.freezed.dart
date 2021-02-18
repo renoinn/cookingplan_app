@@ -12,6 +12,7 @@ CustomSearchResponse _$CustomSearchResponseFromJson(Map<String, dynamic> json) {
   return _CustomSearchResponse.fromJson(json);
 }
 
+/// @nodoc
 class _$CustomSearchResponseTearOff {
   const _$CustomSearchResponseTearOff();
 
@@ -32,11 +33,18 @@ class _$CustomSearchResponseTearOff {
       items: items,
     );
   }
+
+// ignore: unused_element
+  CustomSearchResponse fromJson(Map<String, Object> json) {
+    return CustomSearchResponse.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $CustomSearchResponse = _$CustomSearchResponseTearOff();
 
+/// @nodoc
 mixin _$CustomSearchResponse {
   String get kind;
   Map<String, dynamic> get url;
@@ -46,9 +54,11 @@ mixin _$CustomSearchResponse {
   List<CustomSearchItem> get items;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $CustomSearchResponseCopyWith<CustomSearchResponse> get copyWith;
 }
 
+/// @nodoc
 abstract class $CustomSearchResponseCopyWith<$Res> {
   factory $CustomSearchResponseCopyWith(CustomSearchResponse value,
           $Res Function(CustomSearchResponse) then) =
@@ -64,6 +74,7 @@ abstract class $CustomSearchResponseCopyWith<$Res> {
   $CustomSearchQueriesCopyWith<$Res> get queries;
 }
 
+/// @nodoc
 class _$CustomSearchResponseCopyWithImpl<$Res>
     implements $CustomSearchResponseCopyWith<$Res> {
   _$CustomSearchResponseCopyWithImpl(this._value, this._then);
@@ -106,6 +117,7 @@ class _$CustomSearchResponseCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$CustomSearchResponseCopyWith<$Res>
     implements $CustomSearchResponseCopyWith<$Res> {
   factory _$CustomSearchResponseCopyWith(_CustomSearchResponse value,
@@ -124,6 +136,7 @@ abstract class _$CustomSearchResponseCopyWith<$Res>
   $CustomSearchQueriesCopyWith<$Res> get queries;
 }
 
+/// @nodoc
 class __$CustomSearchResponseCopyWithImpl<$Res>
     extends _$CustomSearchResponseCopyWithImpl<$Res>
     implements _$CustomSearchResponseCopyWith<$Res> {
@@ -159,6 +172,8 @@ class __$CustomSearchResponseCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_CustomSearchResponse implements _CustomSearchResponse {
   _$_CustomSearchResponse(
       {this.kind,
@@ -220,6 +235,7 @@ class _$_CustomSearchResponse implements _CustomSearchResponse {
       const DeepCollectionEquality().hash(searchInformation) ^
       const DeepCollectionEquality().hash(items);
 
+  @JsonKey(ignore: true)
   @override
   _$CustomSearchResponseCopyWith<_CustomSearchResponse> get copyWith =>
       __$CustomSearchResponseCopyWithImpl<_CustomSearchResponse>(
@@ -256,6 +272,7 @@ abstract class _CustomSearchResponse implements CustomSearchResponse {
   @override
   List<CustomSearchItem> get items;
   @override
+  @JsonKey(ignore: true)
   _$CustomSearchResponseCopyWith<_CustomSearchResponse> get copyWith;
 }
 
@@ -263,6 +280,7 @@ CustomSearchQueries _$CustomSearchQueriesFromJson(Map<String, dynamic> json) {
   return _CustomSearchQueries.fromJson(json);
 }
 
+/// @nodoc
 class _$CustomSearchQueriesTearOff {
   const _$CustomSearchQueriesTearOff();
 
@@ -275,19 +293,28 @@ class _$CustomSearchQueriesTearOff {
       nextPage: nextPage,
     );
   }
+
+// ignore: unused_element
+  CustomSearchQueries fromJson(Map<String, Object> json) {
+    return CustomSearchQueries.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $CustomSearchQueries = _$CustomSearchQueriesTearOff();
 
+/// @nodoc
 mixin _$CustomSearchQueries {
   List<CustomSearchRequest> get request;
   List<CustomSearchNextPage> get nextPage;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $CustomSearchQueriesCopyWith<CustomSearchQueries> get copyWith;
 }
 
+/// @nodoc
 abstract class $CustomSearchQueriesCopyWith<$Res> {
   factory $CustomSearchQueriesCopyWith(
           CustomSearchQueries value, $Res Function(CustomSearchQueries) then) =
@@ -296,6 +323,7 @@ abstract class $CustomSearchQueriesCopyWith<$Res> {
       {List<CustomSearchRequest> request, List<CustomSearchNextPage> nextPage});
 }
 
+/// @nodoc
 class _$CustomSearchQueriesCopyWithImpl<$Res>
     implements $CustomSearchQueriesCopyWith<$Res> {
   _$CustomSearchQueriesCopyWithImpl(this._value, this._then);
@@ -320,6 +348,7 @@ class _$CustomSearchQueriesCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$CustomSearchQueriesCopyWith<$Res>
     implements $CustomSearchQueriesCopyWith<$Res> {
   factory _$CustomSearchQueriesCopyWith(_CustomSearchQueries value,
@@ -330,6 +359,7 @@ abstract class _$CustomSearchQueriesCopyWith<$Res>
       {List<CustomSearchRequest> request, List<CustomSearchNextPage> nextPage});
 }
 
+/// @nodoc
 class __$CustomSearchQueriesCopyWithImpl<$Res>
     extends _$CustomSearchQueriesCopyWithImpl<$Res>
     implements _$CustomSearchQueriesCopyWith<$Res> {
@@ -357,6 +387,8 @@ class __$CustomSearchQueriesCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_CustomSearchQueries implements _CustomSearchQueries {
   _$_CustomSearchQueries({this.request, this.nextPage});
 
@@ -391,6 +423,7 @@ class _$_CustomSearchQueries implements _CustomSearchQueries {
       const DeepCollectionEquality().hash(request) ^
       const DeepCollectionEquality().hash(nextPage);
 
+  @JsonKey(ignore: true)
   @override
   _$CustomSearchQueriesCopyWith<_CustomSearchQueries> get copyWith =>
       __$CustomSearchQueriesCopyWithImpl<_CustomSearchQueries>(
@@ -415,6 +448,7 @@ abstract class _CustomSearchQueries implements CustomSearchQueries {
   @override
   List<CustomSearchNextPage> get nextPage;
   @override
+  @JsonKey(ignore: true)
   _$CustomSearchQueriesCopyWith<_CustomSearchQueries> get copyWith;
 }
 
@@ -422,6 +456,7 @@ CustomSearchRequest _$CustomSearchRequestFromJson(Map<String, dynamic> json) {
   return _CustomSearchRequest.fromJson(json);
 }
 
+/// @nodoc
 class _$CustomSearchRequestTearOff {
   const _$CustomSearchRequestTearOff();
 
@@ -448,11 +483,18 @@ class _$CustomSearchRequestTearOff {
       cx: cx,
     );
   }
+
+// ignore: unused_element
+  CustomSearchRequest fromJson(Map<String, Object> json) {
+    return CustomSearchRequest.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $CustomSearchRequest = _$CustomSearchRequestTearOff();
 
+/// @nodoc
 mixin _$CustomSearchRequest {
   String get title;
   String get totalResults;
@@ -465,9 +507,11 @@ mixin _$CustomSearchRequest {
   String get cx;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $CustomSearchRequestCopyWith<CustomSearchRequest> get copyWith;
 }
 
+/// @nodoc
 abstract class $CustomSearchRequestCopyWith<$Res> {
   factory $CustomSearchRequestCopyWith(
           CustomSearchRequest value, $Res Function(CustomSearchRequest) then) =
@@ -484,6 +528,7 @@ abstract class $CustomSearchRequestCopyWith<$Res> {
       String cx});
 }
 
+/// @nodoc
 class _$CustomSearchRequestCopyWithImpl<$Res>
     implements $CustomSearchRequestCopyWith<$Res> {
   _$CustomSearchRequestCopyWithImpl(this._value, this._then);
@@ -525,6 +570,7 @@ class _$CustomSearchRequestCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$CustomSearchRequestCopyWith<$Res>
     implements $CustomSearchRequestCopyWith<$Res> {
   factory _$CustomSearchRequestCopyWith(_CustomSearchRequest value,
@@ -543,6 +589,7 @@ abstract class _$CustomSearchRequestCopyWith<$Res>
       String cx});
 }
 
+/// @nodoc
 class __$CustomSearchRequestCopyWithImpl<$Res>
     extends _$CustomSearchRequestCopyWithImpl<$Res>
     implements _$CustomSearchRequestCopyWith<$Res> {
@@ -587,6 +634,8 @@ class __$CustomSearchRequestCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_CustomSearchRequest implements _CustomSearchRequest {
   _$_CustomSearchRequest(
       {this.title,
@@ -668,6 +717,7 @@ class _$_CustomSearchRequest implements _CustomSearchRequest {
       const DeepCollectionEquality().hash(safe) ^
       const DeepCollectionEquality().hash(cx);
 
+  @JsonKey(ignore: true)
   @override
   _$CustomSearchRequestCopyWith<_CustomSearchRequest> get copyWith =>
       __$CustomSearchRequestCopyWithImpl<_CustomSearchRequest>(
@@ -713,6 +763,7 @@ abstract class _CustomSearchRequest implements CustomSearchRequest {
   @override
   String get cx;
   @override
+  @JsonKey(ignore: true)
   _$CustomSearchRequestCopyWith<_CustomSearchRequest> get copyWith;
 }
 
@@ -720,6 +771,7 @@ CustomSearchNextPage _$CustomSearchNextPageFromJson(Map<String, dynamic> json) {
   return _CustomSearchNextPage.fromJson(json);
 }
 
+/// @nodoc
 class _$CustomSearchNextPageTearOff {
   const _$CustomSearchNextPageTearOff();
 
@@ -746,11 +798,18 @@ class _$CustomSearchNextPageTearOff {
       cx: cx,
     );
   }
+
+// ignore: unused_element
+  CustomSearchNextPage fromJson(Map<String, Object> json) {
+    return CustomSearchNextPage.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $CustomSearchNextPage = _$CustomSearchNextPageTearOff();
 
+/// @nodoc
 mixin _$CustomSearchNextPage {
   String get title;
   String get totalResults;
@@ -763,9 +822,11 @@ mixin _$CustomSearchNextPage {
   String get cx;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $CustomSearchNextPageCopyWith<CustomSearchNextPage> get copyWith;
 }
 
+/// @nodoc
 abstract class $CustomSearchNextPageCopyWith<$Res> {
   factory $CustomSearchNextPageCopyWith(CustomSearchNextPage value,
           $Res Function(CustomSearchNextPage) then) =
@@ -782,6 +843,7 @@ abstract class $CustomSearchNextPageCopyWith<$Res> {
       String cx});
 }
 
+/// @nodoc
 class _$CustomSearchNextPageCopyWithImpl<$Res>
     implements $CustomSearchNextPageCopyWith<$Res> {
   _$CustomSearchNextPageCopyWithImpl(this._value, this._then);
@@ -823,6 +885,7 @@ class _$CustomSearchNextPageCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$CustomSearchNextPageCopyWith<$Res>
     implements $CustomSearchNextPageCopyWith<$Res> {
   factory _$CustomSearchNextPageCopyWith(_CustomSearchNextPage value,
@@ -841,6 +904,7 @@ abstract class _$CustomSearchNextPageCopyWith<$Res>
       String cx});
 }
 
+/// @nodoc
 class __$CustomSearchNextPageCopyWithImpl<$Res>
     extends _$CustomSearchNextPageCopyWithImpl<$Res>
     implements _$CustomSearchNextPageCopyWith<$Res> {
@@ -885,6 +949,8 @@ class __$CustomSearchNextPageCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_CustomSearchNextPage implements _CustomSearchNextPage {
   _$_CustomSearchNextPage(
       {this.title,
@@ -966,6 +1032,7 @@ class _$_CustomSearchNextPage implements _CustomSearchNextPage {
       const DeepCollectionEquality().hash(safe) ^
       const DeepCollectionEquality().hash(cx);
 
+  @JsonKey(ignore: true)
   @override
   _$CustomSearchNextPageCopyWith<_CustomSearchNextPage> get copyWith =>
       __$CustomSearchNextPageCopyWithImpl<_CustomSearchNextPage>(
@@ -1011,6 +1078,7 @@ abstract class _CustomSearchNextPage implements CustomSearchNextPage {
   @override
   String get cx;
   @override
+  @JsonKey(ignore: true)
   _$CustomSearchNextPageCopyWith<_CustomSearchNextPage> get copyWith;
 }
 
@@ -1018,6 +1086,7 @@ CustomSearchItem _$CustomSearchItemFromJson(Map<String, dynamic> json) {
   return _CustomSearchItem.fromJson(json);
 }
 
+/// @nodoc
 class _$CustomSearchItemTearOff {
   const _$CustomSearchItemTearOff();
 
@@ -1048,11 +1117,18 @@ class _$CustomSearchItemTearOff {
       pageMap: pageMap,
     );
   }
+
+// ignore: unused_element
+  CustomSearchItem fromJson(Map<String, Object> json) {
+    return CustomSearchItem.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $CustomSearchItem = _$CustomSearchItemTearOff();
 
+/// @nodoc
 mixin _$CustomSearchItem {
   String get kind;
   String get title;
@@ -1068,9 +1144,11 @@ mixin _$CustomSearchItem {
   CustomSearchPageMap get pageMap;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $CustomSearchItemCopyWith<CustomSearchItem> get copyWith;
 }
 
+/// @nodoc
 abstract class $CustomSearchItemCopyWith<$Res> {
   factory $CustomSearchItemCopyWith(
           CustomSearchItem value, $Res Function(CustomSearchItem) then) =
@@ -1091,6 +1169,7 @@ abstract class $CustomSearchItemCopyWith<$Res> {
   $CustomSearchPageMapCopyWith<$Res> get pageMap;
 }
 
+/// @nodoc
 class _$CustomSearchItemCopyWithImpl<$Res>
     implements $CustomSearchItemCopyWith<$Res> {
   _$CustomSearchItemCopyWithImpl(this._value, this._then);
@@ -1146,6 +1225,7 @@ class _$CustomSearchItemCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$CustomSearchItemCopyWith<$Res>
     implements $CustomSearchItemCopyWith<$Res> {
   factory _$CustomSearchItemCopyWith(
@@ -1169,6 +1249,7 @@ abstract class _$CustomSearchItemCopyWith<$Res>
   $CustomSearchPageMapCopyWith<$Res> get pageMap;
 }
 
+/// @nodoc
 class __$CustomSearchItemCopyWithImpl<$Res>
     extends _$CustomSearchItemCopyWithImpl<$Res>
     implements _$CustomSearchItemCopyWith<$Res> {
@@ -1217,6 +1298,8 @@ class __$CustomSearchItemCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_CustomSearchItem implements _CustomSearchItem {
   _$_CustomSearchItem(
       {this.kind,
@@ -1313,6 +1396,7 @@ class _$_CustomSearchItem implements _CustomSearchItem {
       const DeepCollectionEquality().hash(htmlFormattedUrl) ^
       const DeepCollectionEquality().hash(pageMap);
 
+  @JsonKey(ignore: true)
   @override
   _$CustomSearchItemCopyWith<_CustomSearchItem> get copyWith =>
       __$CustomSearchItemCopyWithImpl<_CustomSearchItem>(this, _$identity);
@@ -1365,6 +1449,7 @@ abstract class _CustomSearchItem implements CustomSearchItem {
   @JsonKey(name: 'pagemap')
   CustomSearchPageMap get pageMap;
   @override
+  @JsonKey(ignore: true)
   _$CustomSearchItemCopyWith<_CustomSearchItem> get copyWith;
 }
 
@@ -1372,6 +1457,7 @@ CustomSearchPageMap _$CustomSearchPageMapFromJson(Map<String, dynamic> json) {
   return _CustomSearchPageMap.fromJson(json);
 }
 
+/// @nodoc
 class _$CustomSearchPageMapTearOff {
   const _$CustomSearchPageMapTearOff();
 
@@ -1388,11 +1474,18 @@ class _$CustomSearchPageMapTearOff {
       cseImage: cseImage,
     );
   }
+
+// ignore: unused_element
+  CustomSearchPageMap fromJson(Map<String, Object> json) {
+    return CustomSearchPageMap.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $CustomSearchPageMap = _$CustomSearchPageMapTearOff();
 
+/// @nodoc
 mixin _$CustomSearchPageMap {
   List<Map<String, dynamic>> get thumbnail;
   @JsonKey(name: 'cse_thumbnail')
@@ -1403,9 +1496,11 @@ mixin _$CustomSearchPageMap {
   List<Map<String, dynamic>> get cseImage;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $CustomSearchPageMapCopyWith<CustomSearchPageMap> get copyWith;
 }
 
+/// @nodoc
 abstract class $CustomSearchPageMapCopyWith<$Res> {
   factory $CustomSearchPageMapCopyWith(
           CustomSearchPageMap value, $Res Function(CustomSearchPageMap) then) =
@@ -1417,6 +1512,7 @@ abstract class $CustomSearchPageMapCopyWith<$Res> {
       @JsonKey(name: 'cse_image') List<Map<String, dynamic>> cseImage});
 }
 
+/// @nodoc
 class _$CustomSearchPageMapCopyWithImpl<$Res>
     implements $CustomSearchPageMapCopyWith<$Res> {
   _$CustomSearchPageMapCopyWithImpl(this._value, this._then);
@@ -1449,6 +1545,7 @@ class _$CustomSearchPageMapCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$CustomSearchPageMapCopyWith<$Res>
     implements $CustomSearchPageMapCopyWith<$Res> {
   factory _$CustomSearchPageMapCopyWith(_CustomSearchPageMap value,
@@ -1462,6 +1559,7 @@ abstract class _$CustomSearchPageMapCopyWith<$Res>
       @JsonKey(name: 'cse_image') List<Map<String, dynamic>> cseImage});
 }
 
+/// @nodoc
 class __$CustomSearchPageMapCopyWithImpl<$Res>
     extends _$CustomSearchPageMapCopyWithImpl<$Res>
     implements _$CustomSearchPageMapCopyWith<$Res> {
@@ -1497,6 +1595,8 @@ class __$CustomSearchPageMapCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_CustomSearchPageMap implements _CustomSearchPageMap {
   _$_CustomSearchPageMap(
       {this.thumbnail,
@@ -1550,6 +1650,7 @@ class _$_CustomSearchPageMap implements _CustomSearchPageMap {
       const DeepCollectionEquality().hash(metaTags) ^
       const DeepCollectionEquality().hash(cseImage);
 
+  @JsonKey(ignore: true)
   @override
   _$CustomSearchPageMapCopyWith<_CustomSearchPageMap> get copyWith =>
       __$CustomSearchPageMapCopyWithImpl<_CustomSearchPageMap>(
@@ -1586,5 +1687,6 @@ abstract class _CustomSearchPageMap implements CustomSearchPageMap {
   @JsonKey(name: 'cse_image')
   List<Map<String, dynamic>> get cseImage;
   @override
+  @JsonKey(ignore: true)
   _$CustomSearchPageMapCopyWith<_CustomSearchPageMap> get copyWith;
 }

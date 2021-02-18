@@ -12,6 +12,7 @@ Food _$FoodFromJson(Map<String, dynamic> json) {
   return _Food.fromJson(json);
 }
 
+/// @nodoc
 class _$FoodTearOff {
   const _$FoodTearOff();
 
@@ -30,11 +31,18 @@ class _$FoodTearOff {
       updatedAt: updatedAt,
     );
   }
+
+// ignore: unused_element
+  Food fromJson(Map<String, Object> json) {
+    return Food.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $Food = _$FoodTearOff();
 
+/// @nodoc
 mixin _$Food {
   @nullable
   int get id;
@@ -47,9 +55,11 @@ mixin _$Food {
   DateTime get updatedAt;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $FoodCopyWith<Food> get copyWith;
 }
 
+/// @nodoc
 abstract class $FoodCopyWith<$Res> {
   factory $FoodCopyWith(Food value, $Res Function(Food) then) =
       _$FoodCopyWithImpl<$Res>;
@@ -61,6 +71,7 @@ abstract class $FoodCopyWith<$Res> {
       @JsonKey(name: 'updated_at') DateTime updatedAt});
 }
 
+/// @nodoc
 class _$FoodCopyWithImpl<$Res> implements $FoodCopyWith<$Res> {
   _$FoodCopyWithImpl(this._value, this._then);
 
@@ -88,6 +99,7 @@ class _$FoodCopyWithImpl<$Res> implements $FoodCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$FoodCopyWith<$Res> implements $FoodCopyWith<$Res> {
   factory _$FoodCopyWith(_Food value, $Res Function(_Food) then) =
       __$FoodCopyWithImpl<$Res>;
@@ -100,6 +112,7 @@ abstract class _$FoodCopyWith<$Res> implements $FoodCopyWith<$Res> {
       @JsonKey(name: 'updated_at') DateTime updatedAt});
 }
 
+/// @nodoc
 class __$FoodCopyWithImpl<$Res> extends _$FoodCopyWithImpl<$Res>
     implements _$FoodCopyWith<$Res> {
   __$FoodCopyWithImpl(_Food _value, $Res Function(_Food) _then)
@@ -129,6 +142,8 @@ class __$FoodCopyWithImpl<$Res> extends _$FoodCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_Food implements _Food {
   _$_Food(
       {@nullable this.id,
@@ -191,6 +206,7 @@ class _$_Food implements _Food {
       const DeepCollectionEquality().hash(createdAt) ^
       const DeepCollectionEquality().hash(updatedAt);
 
+  @JsonKey(ignore: true)
   @override
   _$FoodCopyWith<_Food> get copyWith =>
       __$FoodCopyWithImpl<_Food>(this, _$identity);
@@ -226,5 +242,6 @@ abstract class _Food implements Food {
   @JsonKey(name: 'updated_at')
   DateTime get updatedAt;
   @override
+  @JsonKey(ignore: true)
   _$FoodCopyWith<_Food> get copyWith;
 }

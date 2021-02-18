@@ -1,5 +1,6 @@
 import 'package:cookingplan/entity/food.dart';
 import 'package:cookingplan/repository/search_repository.dart';
+import 'package:cookingplan/theme.dart';
 import 'package:cookingplan/ui/home/home_state.dart';
 import 'package:cookingplan/ui/home/home_state_controller.dart';
 import 'package:cookingplan/ui/search/search_page.dart';
@@ -122,9 +123,13 @@ class _SearchMealsButton extends StatelessWidget {
             },
           ));
         },
-        icon: const Icon(Icons.search),
-        label: const Text(
+        icon: Icon(
+          Icons.search,
+          color: textColor,
+        ),
+        label: Text(
           '献立を探す ',
+          style: Theme.of(context).textTheme.bodyText1,
         ),
       ),
     );
@@ -143,8 +148,8 @@ class _FoodListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dismissible(
       key: ValueKey(food.name),
-      onDismissed: (direction) {
-        context.read<HomeStateController>().deleteFood(food);
+      onDismissed: (direction) async {
+        await context.read<HomeStateController>().deleteFood(food);
         Scaffold.of(context).showSnackBar(SnackBar(
           content: Text('${food.name}を消費しました'),
           action: SnackBarAction(
@@ -191,7 +196,7 @@ class _FoodFormState extends State<_FoodForm> {
 
   @override
   Widget build(BuildContext context) {
-    var usedFoods = <Food>[]; //context.select((HomeState s) => s.usedFoods);
+    var usedFoods = context.select<HomeState, List<Food>>((s) => s.usedFoods);
     final boxHeight = usedFoods.isNotEmpty ? _kFoodFormHeight : _kFoodFormMinimumHeight;
     return Container(
       height: boxHeight,

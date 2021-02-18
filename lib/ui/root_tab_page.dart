@@ -59,17 +59,20 @@ class _RootTabPageState extends State<RootTabPage> {
         ),
         bottomNavigationBar: BottomAppBar(
           color: Theme.of(context).primaryColor,
-          child: Row(
-            children: _models.map((model) {
-              return Expanded(
-                child: _NavigationButton(
-                  icon: model.icon,
-                  title: model.title,
-                  selected: _currentIndex == model.index,
-                  onPressed: () => _onPressNavigationButton(model.index),
-                ),
-              );
-            }).toList(),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: _models.map((model) {
+                return Expanded(
+                  child: _NavigationButton(
+                    icon: model.icon,
+                    title: model.title,
+                    selected: _currentIndex == model.index,
+                    onPressed: () => _onPressNavigationButton(model.index),
+                  ),
+                );
+              }).toList(),
+            ),
           ),
         ),
       ),

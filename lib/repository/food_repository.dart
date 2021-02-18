@@ -40,7 +40,8 @@ class FoodRepository {
 
   Future<int> used(Food food) async {
     var db = await DatabaseProvider.instance().database;
-    var id = await db.update(describeEnum(TableName.food), food.toJson(), where: 'id = ?', whereArgs: <int>[food.id]);
+    var used = food.copyWith(used: true);
+    var id = await db.update(describeEnum(TableName.food), used.toJson(), where: 'id = ?', whereArgs: <int>[food.id]);
     return id;
   }
 }

@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cookingplan/entity/favorite.dart';
+import 'package:cookingplan/entity/recipe.dart';
 import 'package:cookingplan/ui/favorite/favorite_state.dart';
 import 'package:cookingplan/ui/favorite/favorite_state_controller.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class FavoritePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var favorites = context.select<FavoriteState, List<Favorite>>((s) => s.favorites);
+    final favorites = context.select<FavoriteState, List<Recipe>>((s) => s.favorites);
     return Scaffold(
       body: Scrollbar(
         child: SafeArea(
@@ -44,7 +44,7 @@ class _FavoriteItem extends StatelessWidget {
     @required this.favorite,
   }) : super(key: key);
 
-  final Favorite favorite;
+  final Recipe favorite;
 
   @override
   Widget build(BuildContext context) {

@@ -5,9 +5,9 @@ final primaryColor = const Color(0xFF15B5B0);
 final secondaryColor = const Color(0xFFF9BDC0);
 final accentColor = const Color(0xFFFBE698);
 final backgroundColor = const Color(0xFFFFFFFF);
-final textColor = const Color(0xFF332211);
+final textColor = const Color(0xFF443311);
 
-final ColorScheme colorScheme = ColorScheme(
+final colorScheme = ColorScheme(
   brightness: Brightness.light,
   primary: primaryColor,
   primaryVariant: primaryColor,
@@ -23,8 +23,14 @@ final ColorScheme colorScheme = ColorScheme(
   error: Colors.red.shade400,
 );
 
-final TextTheme textTheme = GoogleFonts.mPlus1pTextTheme();
-final ThemeData lightTheme = ThemeData.from(colorScheme: colorScheme, textTheme: textTheme);
+final textTheme = GoogleFonts.mPlus1pTextTheme().apply(
+  displayColor: textColor,
+  bodyColor: textColor,
+);
+final lightTheme = ThemeData.from(
+  colorScheme: colorScheme,
+  textTheme: textTheme,
+);
 
 //final ThemeData lightTheme = ThemeData.light().copyWith(
 //  cardColor: Colors.white,

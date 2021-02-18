@@ -27,6 +27,7 @@ class HomeStateController extends StateNotifier<HomeState> with LocatorMixin {
   }
 
   Future<void> deleteFood(Food food) async {
+    await foodRepository.used(food);
     var foods = await foodRepository.getFoods();
     var usedFoods = await foodRepository.getUsedFoods();
     state = state.copyWith(foods: foods, usedFoods: usedFoods);

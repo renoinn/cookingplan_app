@@ -9,33 +9,39 @@ part of 'favorite_state.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$FavoriteStateTearOff {
   const _$FavoriteStateTearOff();
 
 // ignore: unused_element
-  _FavoriteState call({List<Favorite> favorites = const <Favorite>[]}) {
+  _FavoriteState call({List<Recipe> favorites = const <Recipe>[]}) {
     return _FavoriteState(
       favorites: favorites,
     );
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $FavoriteState = _$FavoriteStateTearOff();
 
+/// @nodoc
 mixin _$FavoriteState {
-  List<Favorite> get favorites;
+  List<Recipe> get favorites;
 
+  @JsonKey(ignore: true)
   $FavoriteStateCopyWith<FavoriteState> get copyWith;
 }
 
+/// @nodoc
 abstract class $FavoriteStateCopyWith<$Res> {
   factory $FavoriteStateCopyWith(
           FavoriteState value, $Res Function(FavoriteState) then) =
       _$FavoriteStateCopyWithImpl<$Res>;
-  $Res call({List<Favorite> favorites});
+  $Res call({List<Recipe> favorites});
 }
 
+/// @nodoc
 class _$FavoriteStateCopyWithImpl<$Res>
     implements $FavoriteStateCopyWith<$Res> {
   _$FavoriteStateCopyWithImpl(this._value, this._then);
@@ -50,20 +56,22 @@ class _$FavoriteStateCopyWithImpl<$Res>
   }) {
     return _then(_value.copyWith(
       favorites:
-          favorites == freezed ? _value.favorites : favorites as List<Favorite>,
+          favorites == freezed ? _value.favorites : favorites as List<Recipe>,
     ));
   }
 }
 
+/// @nodoc
 abstract class _$FavoriteStateCopyWith<$Res>
     implements $FavoriteStateCopyWith<$Res> {
   factory _$FavoriteStateCopyWith(
           _FavoriteState value, $Res Function(_FavoriteState) then) =
       __$FavoriteStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<Favorite> favorites});
+  $Res call({List<Recipe> favorites});
 }
 
+/// @nodoc
 class __$FavoriteStateCopyWithImpl<$Res>
     extends _$FavoriteStateCopyWithImpl<$Res>
     implements _$FavoriteStateCopyWith<$Res> {
@@ -80,18 +88,19 @@ class __$FavoriteStateCopyWithImpl<$Res>
   }) {
     return _then(_FavoriteState(
       favorites:
-          favorites == freezed ? _value.favorites : favorites as List<Favorite>,
+          favorites == freezed ? _value.favorites : favorites as List<Recipe>,
     ));
   }
 }
 
+/// @nodoc
 class _$_FavoriteState with DiagnosticableTreeMixin implements _FavoriteState {
-  _$_FavoriteState({this.favorites = const <Favorite>[]})
+  _$_FavoriteState({this.favorites = const <Recipe>[]})
       : assert(favorites != null);
 
-  @JsonKey(defaultValue: const <Favorite>[])
+  @JsonKey(defaultValue: const <Recipe>[])
   @override
-  final List<Favorite> favorites;
+  final List<Recipe> favorites;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -119,16 +128,18 @@ class _$_FavoriteState with DiagnosticableTreeMixin implements _FavoriteState {
   int get hashCode =>
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(favorites);
 
+  @JsonKey(ignore: true)
   @override
   _$FavoriteStateCopyWith<_FavoriteState> get copyWith =>
       __$FavoriteStateCopyWithImpl<_FavoriteState>(this, _$identity);
 }
 
 abstract class _FavoriteState implements FavoriteState {
-  factory _FavoriteState({List<Favorite> favorites}) = _$_FavoriteState;
+  factory _FavoriteState({List<Recipe> favorites}) = _$_FavoriteState;
 
   @override
-  List<Favorite> get favorites;
+  List<Recipe> get favorites;
   @override
+  @JsonKey(ignore: true)
   _$FavoriteStateCopyWith<_FavoriteState> get copyWith;
 }

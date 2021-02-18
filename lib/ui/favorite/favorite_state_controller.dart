@@ -1,5 +1,5 @@
-import 'package:cookingplan/entity/favorite.dart';
 import 'package:cookingplan/entity/food.dart';
+import 'package:cookingplan/entity/recipe.dart';
 import 'package:cookingplan/repository/favorite_repository.dart';
 import 'package:cookingplan/ui/favorite/favorite_state.dart';
 import 'package:cookingplan/ui/search/search_state.dart';
@@ -18,11 +18,11 @@ class FavoriteStateController extends StateNotifier<FavoriteState> with LocatorM
   }
 
   Future<void> addFavorite(SearchResultItem item, List<Food> foods) async {
-    var favorite = Favorite.now(title: item.title, description: item.description, link: item.link, displayLink: item.displayLink, thumbnail: item.thumbnail);
+    var favorite = Recipe.now(title: item.title, description: item.description, link: item.link, displayLink: item.displayLink, thumbnail: item.thumbnail);
     if (await favoriteRepository.isExist(favorite.link)) return;
 
     await favoriteRepository.saveFavorite(favorite);
-    var favorites = List<Favorite>.from(state.favorites)..add(favorite);
+    var favorites = List<Recipe>.from(state.favorites)..add(favorite);
     state = state.copyWith(favorites: favorites);
   }
 
