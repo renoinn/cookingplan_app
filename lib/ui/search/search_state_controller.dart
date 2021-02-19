@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 final searchStateProvider = StateNotifierProvider((ref) => SearchStateController(ref.read));
+
 class SearchStateController extends StateNotifier<SearchState> with LocatorMixin {
   SearchStateController(this._read) : super(SearchState());
 
