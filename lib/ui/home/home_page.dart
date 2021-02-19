@@ -2,6 +2,7 @@ import 'package:cookingplan/entity/food.dart';
 import 'package:cookingplan/theme.dart';
 import 'package:cookingplan/ui/home/home_state_controller.dart';
 import 'package:cookingplan/ui/search/search_page.dart';
+import 'package:cookingplan/ui/search/search_state_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -102,7 +103,7 @@ class _SearchMealsButton extends StatelessWidget {
           }
           Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
             builder: (context) {
-//              var searchState = SearchState(selectedFoods: selectedFoods);
+              useProvider(searchStateProvider).search();
               return const SearchPage();
             },
           ));
