@@ -2,10 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cookingplan/entity/recipe.dart';
 import 'package:cookingplan/ui/favorite/favorite_state_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class FavoritePage extends StatelessWidget {
+class FavoritePage extends HookWidget {
   static const String routeName = 'favorite/';
 
   const FavoritePage({
@@ -37,7 +38,7 @@ class FavoritePage extends StatelessWidget {
   }
 }
 
-class _FavoriteItem extends StatelessWidget {
+class _FavoriteItem extends HookWidget {
   const _FavoriteItem({
     Key key,
     @required this.favorite,

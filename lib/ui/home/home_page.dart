@@ -4,13 +4,14 @@ import 'package:cookingplan/ui/home/home_state_controller.dart';
 import 'package:cookingplan/ui/search/search_page.dart';
 import 'package:cookingplan/ui/search/search_state_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final homePageKey = GlobalKey<ScaffoldState>();
 const _kFoodFormHeight = 140.0;
 const _kFoodFormMinimumHeight = 96.0;
 
-class HomePage extends StatelessWidget {
+class HomePage extends HookWidget {
   static const String routeName = 'home/';
 
   const HomePage({
@@ -85,7 +86,7 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class _SearchMealsButton extends StatelessWidget {
+class _SearchMealsButton extends HookWidget {
   const _SearchMealsButton({
     Key key,
   }) : super(key: key);
@@ -121,7 +122,7 @@ class _SearchMealsButton extends StatelessWidget {
   }
 }
 
-class _FoodListItem extends StatelessWidget {
+class _FoodListItem extends HookWidget {
   const _FoodListItem({
     Key key,
     this.food,
@@ -167,17 +168,12 @@ class _FoodListItem extends StatelessWidget {
   }
 }
 
-class _FoodForm extends StatefulWidget {
+final _foodFormKey = Provider((_) => GlobalKey<FormFieldState<String>>());
+
+class _FoodForm extends HookWidget {
   const _FoodForm({
     Key key,
   }) : super(key: key);
-
-  @override
-  _FoodFormState createState() => _FoodFormState();
-}
-
-class _FoodFormState extends State<_FoodForm> {
-  final TextEditingController _food = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -202,7 +198,7 @@ class _FoodFormState extends State<_FoodForm> {
                     child: InputChip(
                         label: Text(usedFood.name),
                         onPressed: () {
-                          _food.text = usedFood.name;
+                          useProvider(_foodFormKey).currentState.didChange(usedFood.name);
                         }),
                   );
                 }).toList(),
@@ -213,15 +209,15 @@ class _FoodFormState extends State<_FoodForm> {
             children: <Widget>[
               Expanded(
                 child: TextFormField(
-                  controller: _food,
+                  key: useProvider(_foodFormKey),
                   decoration: const InputDecoration(hintText: '食材を追加'),
                 ),
               ),
               FlatButton(
                 onPressed: () {
-                  var food = Food.withName(_food.text);
+                  var food = Food.withName(useProvider(_foodFormKey).currentState.value);
                   useProvider(homeStateProvider).addFood(food);
-                  _food.clear();
+                  useProvider(_foodFormKey).currentState.reset();
                 },
                 child: const Icon(Icons.add),
               )
