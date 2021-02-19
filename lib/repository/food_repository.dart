@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:cookingplan/database.dart';
 import 'package:cookingplan/entity/food.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+final foodRepositoryProvider = Provider((_) => FoodRepository());
 
 class FoodRepository {
   FoodRepository();

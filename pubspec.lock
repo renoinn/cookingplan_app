@@ -244,6 +244,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  flutter_hooks:
+    dependency: transitive
+    description:
+      name: flutter_hooks
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.15.0"
   flutter_inappwebview:
     dependency: "direct main"
     description:
@@ -256,13 +263,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_state_notifier:
-    dependency: "direct main"
+  flutter_riverpod:
+    dependency: transitive
     description:
-      name: flutter_state_notifier
+      name: flutter_riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.1"
+    version: "0.12.4"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -308,6 +315,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.0"
+  hooks_riverpod:
+    dependency: "direct main"
+    description:
+      name: hooks_riverpod
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.12.4"
   http:
     dependency: transitive
     description:
@@ -399,13 +413,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.9.7"
-  nested:
-    dependency: transitive
-    description:
-      name: nested
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.4"
   node_interop:
     dependency: transitive
     description:
@@ -518,13 +525,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.13"
-  provider:
-    dependency: "direct main"
-    description:
-      name: provider
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.3.3"
   pub_semver:
     dependency: transitive
     description:
@@ -546,6 +546,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.5"
+  riverpod:
+    dependency: "direct main"
+    description:
+      name: riverpod
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.12.4"
   rxdart:
     dependency: transitive
     description:
@@ -608,7 +615,7 @@ packages:
     source: hosted
     version: "1.10.0-nullsafety.1"
   state_notifier:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: state_notifier
       url: "https://pub.dartlang.org"

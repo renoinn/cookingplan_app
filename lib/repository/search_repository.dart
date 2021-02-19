@@ -2,6 +2,9 @@ import 'package:cookingplan/env.dart';
 import 'package:cookingplan/network.dart';
 import 'package:cookingplan/response/custom_search_response.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+final searchRepositoryProvider = Provider((_) => SearchRepository());
 
 class SearchRepository {
   Future<CustomSearchResponse> search({@required String query, int page = 0}) async {

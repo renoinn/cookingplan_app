@@ -3,16 +3,21 @@ import 'package:cookingplan/entity/recipe.dart';
 import 'package:cookingplan/repository/favorite_repository.dart';
 import 'package:cookingplan/ui/favorite/favorite_state.dart';
 import 'package:cookingplan/ui/search/search_state.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:state_notifier/state_notifier.dart';
 
-class FavoriteStateController extends StateNotifier<FavoriteState> with LocatorMixin {
-  FavoriteStateController(FavoriteState state) : super(state);
+final favoriteStateProvider = StateNotifierProvider((ref) => FavoriteStateController(ref.read));
 
-  FavoriteRepository get favoriteRepository => read<FavoriteRepository>();
+class FavoriteStateController extends StateNotifier<FavoriteState> {
+  FavoriteStateController(this._read) : super(FavoriteState()) {
+    initState();
+  }
 
-  @override
+  final Reader _read;
+
+  FavoriteRepository get favoriteRepository => _read(favoriteRepositoryProvider);
+
   Future<void> initState() async {
-    super.initState();
     var favorites = await favoriteRepository.getFavorites();
     state = state.copyWith(favorites: favorites);
   }

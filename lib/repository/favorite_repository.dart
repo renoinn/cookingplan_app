@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:cookingplan/database.dart';
 import 'package:cookingplan/entity/recipe.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+final favoriteRepositoryProvider = Provider((_) => FavoriteRepository());
 
 class FavoriteRepository {
   FavoriteRepository();

@@ -1,14 +1,9 @@
 import 'package:cookingplan/entity/food.dart';
-import 'package:cookingplan/repository/search_repository.dart';
 import 'package:cookingplan/theme.dart';
-import 'package:cookingplan/ui/home/home_state.dart';
 import 'package:cookingplan/ui/home/home_state_controller.dart';
 import 'package:cookingplan/ui/search/search_page.dart';
-import 'package:cookingplan/ui/search/search_state.dart';
-import 'package:cookingplan/ui/search/search_state_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_state_notifier/flutter_state_notifier.dart';
-import 'package:provider/provider.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final homePageKey = GlobalKey<ScaffoldState>();
 const _kFoodFormHeight = 140.0;
@@ -23,7 +18,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final foods = context.select<HomeState, List<Food>>((s) => s.foods);
+    final foods = useProvider(homeStateProvider.state.select((value) => value.foods));
     // TODO showLicensePage
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
@@ -96,30 +91,19 @@ class _SearchMealsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final selectedFoods = useProvider(homeStateProvider.state.select((value) => value.selectedFoods));
     return Visibility(
-      visible: context.select<HomeState, List<Food>>((s) => s.selectedFoods).isNotEmpty,
+      visible: selectedFoods.isNotEmpty,
       child: FloatingActionButton.extended(
         onPressed: () {
-          var selectedFoods = context.read<HomeState>().selectedFoods;
           if (selectedFoods.isEmpty) {
             // TODO show snack bar
             return;
           }
           Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
             builder: (context) {
-              var searchState = SearchState(selectedFoods: selectedFoods);
-              return Provider<SearchRepository>(
-                create: (context) => SearchRepository(),
-                child: StateNotifierProvider<SearchStateController, SearchState>(
-                  create: (context) => SearchStateController(searchState),
-                  child: Consumer<SearchStateController>(
-                    builder: (context, controller, _) {
-                      controller.search();
-                      return const SearchPage();
-                    },
-                  ),
-                ),
-              );
+//              var searchState = SearchState(selectedFoods: selectedFoods);
+              return const SearchPage();
             },
           ));
         },
@@ -149,11 +133,11 @@ class _FoodListItem extends StatelessWidget {
     return Dismissible(
       key: ValueKey(food.name),
       onDismissed: (direction) async {
-        await context.read<HomeStateController>().deleteFood(food);
+        await useProvider(homeStateProvider).deleteFood(food);
         Scaffold.of(context).showSnackBar(SnackBar(
           content: Text('${food.name}を消費しました'),
           action: SnackBarAction(
-            onPressed: () => homePageKey.currentContext.read<HomeStateController>().undoDelete(food),
+            onPressed: () => useProvider(homeStateProvider).undoDelete(food),
             label: '元に戻す',
           ),
         ));
@@ -163,15 +147,15 @@ class _FoodListItem extends StatelessWidget {
       ),
       child: ListTile(
         onTap: () {
-          if (!context.read<HomeState>().selectedFoods.contains(food)) {
-            context.read<HomeStateController>().selectFood(food);
+          if (!useProvider(homeStateProvider.state.select((value) => value.selectedFoods)).contains(food)) {
+            useProvider(homeStateProvider).selectFood(food);
           } else {
-            context.read<HomeStateController>().deselectFood(food);
+            useProvider(homeStateProvider).deselectFood(food);
           }
         },
         title: Text(food.name),
         trailing: Visibility(
-          visible: context.select<HomeState, List<Food>>((s) => s.selectedFoods).contains(food),
+          visible: useProvider(homeStateProvider.state.select((value) => value.selectedFoods)).contains(food),
           child: const Icon(
             Icons.check,
             color: Colors.green,
@@ -196,7 +180,7 @@ class _FoodFormState extends State<_FoodForm> {
 
   @override
   Widget build(BuildContext context) {
-    var usedFoods = context.select<HomeState, List<Food>>((s) => s.usedFoods);
+    var usedFoods = useProvider(homeStateProvider.state.select((value) => value.usedFoods));
     final boxHeight = usedFoods.isNotEmpty ? _kFoodFormHeight : _kFoodFormMinimumHeight;
     return Container(
       height: boxHeight,
@@ -235,7 +219,7 @@ class _FoodFormState extends State<_FoodForm> {
               FlatButton(
                 onPressed: () {
                   var food = Food.withName(_food.text);
-                  context.read<HomeStateController>().addFood(food);
+                  useProvider(homeStateProvider).addFood(food);
                   _food.clear();
                 },
                 child: const Icon(Icons.add),

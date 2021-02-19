@@ -2,15 +2,19 @@ import 'package:cookingplan/repository/favorite_repository.dart';
 import 'package:cookingplan/repository/search_repository.dart';
 import 'package:cookingplan/ui/favorite/favorite_state_controller.dart';
 import 'package:cookingplan/ui/search/search_state.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:state_notifier/state_notifier.dart';
 
+final searchStateProvider = StateNotifierProvider((ref) => SearchStateController(ref.read));
 class SearchStateController extends StateNotifier<SearchState> with LocatorMixin {
-  SearchStateController(SearchState state) : super(state);
+  SearchStateController(this._read) : super(SearchState());
 
-  SearchRepository get searchRepository => read<SearchRepository>();
-  FavoriteRepository get favoriteRepository => read<FavoriteRepository>();
+  final Reader _read;
 
-  FavoriteStateController get favoriteStateController => read<FavoriteStateController>();
+  SearchRepository get searchRepository => _read(searchRepositoryProvider);
+  FavoriteRepository get favoriteRepository => _read(favoriteRepositoryProvider);
+
+  FavoriteStateController get favoriteStateController => _read(favoriteStateProvider);
 
   Future<void> search({int page = 0}) async {
     var query = state.selectedFoods.map((food) => food.name).join(' ');

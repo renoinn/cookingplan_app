@@ -1,10 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cookingplan/entity/recipe.dart';
-import 'package:cookingplan/ui/favorite/favorite_state.dart';
 import 'package:cookingplan/ui/favorite/favorite_state_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:provider/provider.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FavoritePage extends StatelessWidget {
   static const String routeName = 'favorite/';
@@ -15,7 +14,7 @@ class FavoritePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final favorites = context.select<FavoriteState, List<Recipe>>((s) => s.favorites);
+    final favorites = useProvider(favoriteStateProvider.state.select((value) => value.favorites));
     return Scaffold(
       body: Scrollbar(
         child: SafeArea(
@@ -98,7 +97,7 @@ class _FavoriteItem extends StatelessWidget {
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         child: FlatButton(
                           onPressed: () {
-                            context.read<FavoriteStateController>().deleteFavorite(favorite.link);
+                            useProvider(favoriteStateProvider).deleteFavorite(favorite.link);
                           },
                           child: const Icon(
                             Icons.delete,
