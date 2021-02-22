@@ -104,7 +104,7 @@ class _SearchMealsButton extends HookWidget {
           }
           Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
             builder: (context) {
-              useProvider(searchStateProvider).search();
+              context.read(searchStateProvider).search();
               return const SearchPage();
             },
           ));
@@ -135,24 +135,24 @@ class _FoodListItem extends HookWidget {
     return Dismissible(
       key: ValueKey(food.name),
       onDismissed: (direction) async {
-        await useProvider(homeStateProvider).deleteFood(food);
-        Scaffold.of(context).showSnackBar(SnackBar(
-          content: Text('${food.name}を消費しました'),
-          action: SnackBarAction(
-            onPressed: () => useProvider(homeStateProvider).undoDelete(food),
-            label: '元に戻す',
-          ),
-        ));
+        await context.read(homeStateProvider).deleteFood(food);
+//        Scaffold.of(context).showSnackBar(SnackBar(
+//          content: Text('${food.name}を消費しました'),
+//          action: SnackBarAction(
+//            onPressed: () => context.read(homeStateProvider).undoDelete(food),
+//            label: '元に戻す',
+//          ),
+//        ));
       },
       background: Container(
         color: Colors.red,
       ),
       child: ListTile(
         onTap: () {
-          if (!useProvider(homeStateProvider.state.select((value) => value.selectedFoods)).contains(food)) {
-            useProvider(homeStateProvider).selectFood(food);
+          if (!context.read(homeStateProvider.state).selectedFoods.contains(food)) {
+            context.read(homeStateProvider).selectFood(food);
           } else {
-            useProvider(homeStateProvider).deselectFood(food);
+            context.read(homeStateProvider).deselectFood(food);
           }
         },
         title: Text(food.name),
@@ -198,7 +198,7 @@ class _FoodForm extends HookWidget {
                     child: InputChip(
                         label: Text(usedFood.name),
                         onPressed: () {
-                          useProvider(_foodFormKey).currentState.didChange(usedFood.name);
+                          context.read(_foodFormKey).currentState.didChange(usedFood.name);
                         }),
                   );
                 }).toList(),
@@ -215,9 +215,9 @@ class _FoodForm extends HookWidget {
               ),
               FlatButton(
                 onPressed: () {
-                  var food = Food.withName(useProvider(_foodFormKey).currentState.value);
-                  useProvider(homeStateProvider).addFood(food);
-                  useProvider(_foodFormKey).currentState.reset();
+                  var food = Food.withName(context.read(_foodFormKey).currentState.value);
+                  context.read(homeStateProvider).addFood(food);
+                  context.read(_foodFormKey).currentState.reset();
                 },
                 child: const Icon(Icons.add),
               )

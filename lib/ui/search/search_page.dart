@@ -28,7 +28,7 @@ class SearchPage extends HookWidget {
             itemCount: results.length ?? 0,
             itemBuilder: (context, position) {
               if (results.length == position) {
-                useProvider(searchStateProvider).search();
+                context.read(searchStateProvider).search();
                 return const CircularProgressIndicator();
               }
               var result = results[position];
@@ -98,9 +98,9 @@ class _SearchPageResultItem extends HookWidget {
                         favorite: result.favorite,
                         onPressed: () {
                           if (result.favorite) {
-                            useProvider(searchStateProvider).deleteFavorite(result.link);
+                            context.read(searchStateProvider).deleteFavorite(result.link);
                           } else {
-                            useProvider(searchStateProvider).addFavorite(result);
+                            context.read(searchStateProvider).addFavorite(result);
                           }
                         },
                       ),

@@ -98,7 +98,7 @@ class _FavoriteItem extends HookWidget {
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         child: FlatButton(
                           onPressed: () {
-                            useProvider(favoriteStateProvider).deleteFavorite(favorite.link);
+                            context.read(favoriteStateProvider).deleteFavorite(favorite.link);
                           },
                           child: const Icon(
                             Icons.delete,
