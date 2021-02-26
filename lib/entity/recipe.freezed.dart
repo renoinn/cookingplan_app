@@ -1,22 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
-part of 'favorite.dart';
+part of 'recipe.dart';
 
 // **************************************************************************
 // FreezedGenerator
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-Favorite _$FavoriteFromJson(Map<String, dynamic> json) {
-  return _Favorite.fromJson(json);
+Recipe _$RecipeFromJson(Map<String, dynamic> json) {
+  return _Recipe.fromJson(json);
 }
 
-class _$FavoriteTearOff {
-  const _$FavoriteTearOff();
+/// @nodoc
+class _$RecipeTearOff {
+  const _$RecipeTearOff();
 
 // ignore: unused_element
-  _Favorite call(
+  _Recipe call(
       {@nullable int id,
       String title,
       String description = '',
@@ -25,7 +26,7 @@ class _$FavoriteTearOff {
       @JsonKey(name: 'display_link') String displayLink = '',
       @JsonKey(name: 'created_at') DateTime createdAt,
       @JsonKey(name: 'updated_at') DateTime updatedAt}) {
-    return _Favorite(
+    return _Recipe(
       id: id,
       title: title,
       description: description,
@@ -36,12 +37,19 @@ class _$FavoriteTearOff {
       updatedAt: updatedAt,
     );
   }
-}
 
 // ignore: unused_element
-const $Favorite = _$FavoriteTearOff();
+  Recipe fromJson(Map<String, Object> json) {
+    return Recipe.fromJson(json);
+  }
+}
 
-mixin _$Favorite {
+/// @nodoc
+// ignore: unused_element
+const $Recipe = _$RecipeTearOff();
+
+/// @nodoc
+mixin _$Recipe {
   @nullable
   int get id;
   String get title;
@@ -56,12 +64,14 @@ mixin _$Favorite {
   DateTime get updatedAt;
 
   Map<String, dynamic> toJson();
-  $FavoriteCopyWith<Favorite> get copyWith;
+  @JsonKey(ignore: true)
+  $RecipeCopyWith<Recipe> get copyWith;
 }
 
-abstract class $FavoriteCopyWith<$Res> {
-  factory $FavoriteCopyWith(Favorite value, $Res Function(Favorite) then) =
-      _$FavoriteCopyWithImpl<$Res>;
+/// @nodoc
+abstract class $RecipeCopyWith<$Res> {
+  factory $RecipeCopyWith(Recipe value, $Res Function(Recipe) then) =
+      _$RecipeCopyWithImpl<$Res>;
   $Res call(
       {@nullable int id,
       String title,
@@ -73,12 +83,13 @@ abstract class $FavoriteCopyWith<$Res> {
       @JsonKey(name: 'updated_at') DateTime updatedAt});
 }
 
-class _$FavoriteCopyWithImpl<$Res> implements $FavoriteCopyWith<$Res> {
-  _$FavoriteCopyWithImpl(this._value, this._then);
+/// @nodoc
+class _$RecipeCopyWithImpl<$Res> implements $RecipeCopyWith<$Res> {
+  _$RecipeCopyWithImpl(this._value, this._then);
 
-  final Favorite _value;
+  final Recipe _value;
   // ignore: unused_field
-  final $Res Function(Favorite) _then;
+  final $Res Function(Recipe) _then;
 
   @override
   $Res call({
@@ -108,9 +119,10 @@ class _$FavoriteCopyWithImpl<$Res> implements $FavoriteCopyWith<$Res> {
   }
 }
 
-abstract class _$FavoriteCopyWith<$Res> implements $FavoriteCopyWith<$Res> {
-  factory _$FavoriteCopyWith(_Favorite value, $Res Function(_Favorite) then) =
-      __$FavoriteCopyWithImpl<$Res>;
+/// @nodoc
+abstract class _$RecipeCopyWith<$Res> implements $RecipeCopyWith<$Res> {
+  factory _$RecipeCopyWith(_Recipe value, $Res Function(_Recipe) then) =
+      __$RecipeCopyWithImpl<$Res>;
   @override
   $Res call(
       {@nullable int id,
@@ -123,13 +135,14 @@ abstract class _$FavoriteCopyWith<$Res> implements $FavoriteCopyWith<$Res> {
       @JsonKey(name: 'updated_at') DateTime updatedAt});
 }
 
-class __$FavoriteCopyWithImpl<$Res> extends _$FavoriteCopyWithImpl<$Res>
-    implements _$FavoriteCopyWith<$Res> {
-  __$FavoriteCopyWithImpl(_Favorite _value, $Res Function(_Favorite) _then)
-      : super(_value, (v) => _then(v as _Favorite));
+/// @nodoc
+class __$RecipeCopyWithImpl<$Res> extends _$RecipeCopyWithImpl<$Res>
+    implements _$RecipeCopyWith<$Res> {
+  __$RecipeCopyWithImpl(_Recipe _value, $Res Function(_Recipe) _then)
+      : super(_value, (v) => _then(v as _Recipe));
 
   @override
-  _Favorite get _value => super._value as _Favorite;
+  _Recipe get _value => super._value as _Recipe;
 
   @override
   $Res call({
@@ -142,7 +155,7 @@ class __$FavoriteCopyWithImpl<$Res> extends _$FavoriteCopyWithImpl<$Res>
     Object createdAt = freezed,
     Object updatedAt = freezed,
   }) {
-    return _then(_Favorite(
+    return _then(_Recipe(
       id: id == freezed ? _value.id : id as int,
       title: title == freezed ? _value.title : title as String,
       description:
@@ -160,8 +173,10 @@ class __$FavoriteCopyWithImpl<$Res> extends _$FavoriteCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
-class _$_Favorite with DiagnosticableTreeMixin implements _Favorite {
-  _$_Favorite(
+
+/// @nodoc
+class _$_Recipe with DiagnosticableTreeMixin implements _Recipe {
+  _$_Recipe(
       {@nullable this.id,
       this.title,
       this.description = '',
@@ -174,8 +189,8 @@ class _$_Favorite with DiagnosticableTreeMixin implements _Favorite {
         assert(thumbnail != null),
         assert(displayLink != null);
 
-  factory _$_Favorite.fromJson(Map<String, dynamic> json) =>
-      _$_$_FavoriteFromJson(json);
+  factory _$_Recipe.fromJson(Map<String, dynamic> json) =>
+      _$_$_RecipeFromJson(json);
 
   @override
   @nullable
@@ -202,14 +217,14 @@ class _$_Favorite with DiagnosticableTreeMixin implements _Favorite {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Favorite(id: $id, title: $title, description: $description, thumbnail: $thumbnail, link: $link, displayLink: $displayLink, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Recipe(id: $id, title: $title, description: $description, thumbnail: $thumbnail, link: $link, displayLink: $displayLink, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'Favorite'))
+      ..add(DiagnosticsProperty('type', 'Recipe'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('description', description))
@@ -223,7 +238,7 @@ class _$_Favorite with DiagnosticableTreeMixin implements _Favorite {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Favorite &&
+        (other is _Recipe &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.title, title) ||
@@ -259,18 +274,19 @@ class _$_Favorite with DiagnosticableTreeMixin implements _Favorite {
       const DeepCollectionEquality().hash(createdAt) ^
       const DeepCollectionEquality().hash(updatedAt);
 
+  @JsonKey(ignore: true)
   @override
-  _$FavoriteCopyWith<_Favorite> get copyWith =>
-      __$FavoriteCopyWithImpl<_Favorite>(this, _$identity);
+  _$RecipeCopyWith<_Recipe> get copyWith =>
+      __$RecipeCopyWithImpl<_Recipe>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_FavoriteToJson(this);
+    return _$_$_RecipeToJson(this);
   }
 }
 
-abstract class _Favorite implements Favorite {
-  factory _Favorite(
+abstract class _Recipe implements Recipe {
+  factory _Recipe(
       {@nullable int id,
       String title,
       String description,
@@ -278,9 +294,9 @@ abstract class _Favorite implements Favorite {
       String link,
       @JsonKey(name: 'display_link') String displayLink,
       @JsonKey(name: 'created_at') DateTime createdAt,
-      @JsonKey(name: 'updated_at') DateTime updatedAt}) = _$_Favorite;
+      @JsonKey(name: 'updated_at') DateTime updatedAt}) = _$_Recipe;
 
-  factory _Favorite.fromJson(Map<String, dynamic> json) = _$_Favorite.fromJson;
+  factory _Recipe.fromJson(Map<String, dynamic> json) = _$_Recipe.fromJson;
 
   @override
   @nullable
@@ -303,5 +319,6 @@ abstract class _Favorite implements Favorite {
   @JsonKey(name: 'updated_at')
   DateTime get updatedAt;
   @override
-  _$FavoriteCopyWith<_Favorite> get copyWith;
+  @JsonKey(ignore: true)
+  _$RecipeCopyWith<_Recipe> get copyWith;
 }

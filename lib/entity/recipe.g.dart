@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'favorite.dart';
+part of 'recipe.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Favorite _$_$_FavoriteFromJson(Map<String, dynamic> json) {
-  return _$_Favorite(
+_$_Recipe _$_$_RecipeFromJson(Map<String, dynamic> json) {
+  return _$_Recipe(
     id: json['id'] as int,
     title: json['title'] as String,
     description: json['description'] as String ?? '',
@@ -23,8 +23,7 @@ _$_Favorite _$_$_FavoriteFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_FavoriteToJson(_$_Favorite instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_RecipeToJson(_$_Recipe instance) => <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
       'description': instance.description,

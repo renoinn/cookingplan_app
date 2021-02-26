@@ -9,6 +9,7 @@ part of 'search_state.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$SearchStateTearOff {
   const _$SearchStateTearOff();
 
@@ -25,17 +26,21 @@ class _$SearchStateTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $SearchState = _$SearchStateTearOff();
 
+/// @nodoc
 mixin _$SearchState {
   List<Food> get selectedFoods;
   List<SearchResultItem> get results;
   int get page;
 
+  @JsonKey(ignore: true)
   $SearchStateCopyWith<SearchState> get copyWith;
 }
 
+/// @nodoc
 abstract class $SearchStateCopyWith<$Res> {
   factory $SearchStateCopyWith(
           SearchState value, $Res Function(SearchState) then) =
@@ -44,6 +49,7 @@ abstract class $SearchStateCopyWith<$Res> {
       {List<Food> selectedFoods, List<SearchResultItem> results, int page});
 }
 
+/// @nodoc
 class _$SearchStateCopyWithImpl<$Res> implements $SearchStateCopyWith<$Res> {
   _$SearchStateCopyWithImpl(this._value, this._then);
 
@@ -69,6 +75,7 @@ class _$SearchStateCopyWithImpl<$Res> implements $SearchStateCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$SearchStateCopyWith<$Res>
     implements $SearchStateCopyWith<$Res> {
   factory _$SearchStateCopyWith(
@@ -79,6 +86,7 @@ abstract class _$SearchStateCopyWith<$Res>
       {List<Food> selectedFoods, List<SearchResultItem> results, int page});
 }
 
+/// @nodoc
 class __$SearchStateCopyWithImpl<$Res> extends _$SearchStateCopyWithImpl<$Res>
     implements _$SearchStateCopyWith<$Res> {
   __$SearchStateCopyWithImpl(
@@ -106,6 +114,7 @@ class __$SearchStateCopyWithImpl<$Res> extends _$SearchStateCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_SearchState with DiagnosticableTreeMixin implements _SearchState {
   _$_SearchState(
       {this.selectedFoods = const <Food>[],
@@ -161,6 +170,7 @@ class _$_SearchState with DiagnosticableTreeMixin implements _SearchState {
       const DeepCollectionEquality().hash(results) ^
       const DeepCollectionEquality().hash(page);
 
+  @JsonKey(ignore: true)
   @override
   _$SearchStateCopyWith<_SearchState> get copyWith =>
       __$SearchStateCopyWithImpl<_SearchState>(this, _$identity);
@@ -179,9 +189,11 @@ abstract class _SearchState implements SearchState {
   @override
   int get page;
   @override
+  @JsonKey(ignore: true)
   _$SearchStateCopyWith<_SearchState> get copyWith;
 }
 
+/// @nodoc
 class _$SearchResultItemTearOff {
   const _$SearchResultItemTearOff();
 
@@ -206,9 +218,11 @@ class _$SearchResultItemTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $SearchResultItem = _$SearchResultItemTearOff();
 
+/// @nodoc
 mixin _$SearchResultItem {
   String get title;
   String get description;
@@ -218,9 +232,11 @@ mixin _$SearchResultItem {
   String get displayLink;
   bool get favorite;
 
+  @JsonKey(ignore: true)
   $SearchResultItemCopyWith<SearchResultItem> get copyWith;
 }
 
+/// @nodoc
 abstract class $SearchResultItemCopyWith<$Res> {
   factory $SearchResultItemCopyWith(
           SearchResultItem value, $Res Function(SearchResultItem) then) =
@@ -235,6 +251,7 @@ abstract class $SearchResultItemCopyWith<$Res> {
       bool favorite});
 }
 
+/// @nodoc
 class _$SearchResultItemCopyWithImpl<$Res>
     implements $SearchResultItemCopyWith<$Res> {
   _$SearchResultItemCopyWithImpl(this._value, this._then);
@@ -267,6 +284,7 @@ class _$SearchResultItemCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$SearchResultItemCopyWith<$Res>
     implements $SearchResultItemCopyWith<$Res> {
   factory _$SearchResultItemCopyWith(
@@ -283,6 +301,7 @@ abstract class _$SearchResultItemCopyWith<$Res>
       bool favorite});
 }
 
+/// @nodoc
 class __$SearchResultItemCopyWithImpl<$Res>
     extends _$SearchResultItemCopyWithImpl<$Res>
     implements _$SearchResultItemCopyWith<$Res> {
@@ -317,6 +336,7 @@ class __$SearchResultItemCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_SearchResultItem
     with DiagnosticableTreeMixin
     implements _SearchResultItem {
@@ -399,6 +419,7 @@ class _$_SearchResultItem
       const DeepCollectionEquality().hash(displayLink) ^
       const DeepCollectionEquality().hash(favorite);
 
+  @JsonKey(ignore: true)
   @override
   _$SearchResultItemCopyWith<_SearchResultItem> get copyWith =>
       __$SearchResultItemCopyWithImpl<_SearchResultItem>(this, _$identity);
@@ -429,5 +450,6 @@ abstract class _SearchResultItem implements SearchResultItem {
   @override
   bool get favorite;
   @override
+  @JsonKey(ignore: true)
   _$SearchResultItemCopyWith<_SearchResultItem> get copyWith;
 }

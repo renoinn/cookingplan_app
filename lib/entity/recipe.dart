@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'favorite.freezed.dart';
-part 'favorite.g.dart';
+part 'recipe.freezed.dart';
+part 'recipe.g.dart';
 
 @freezed
-abstract class Favorite with _$Favorite {
-  factory Favorite({
+abstract class Recipe with _$Recipe {
+  factory Recipe({
     @nullable int id,
     String title,
     @Default('') String description,
@@ -15,18 +15,18 @@ abstract class Favorite with _$Favorite {
     @Default('') @JsonKey(name: 'display_link') String displayLink,
     @JsonKey(name: 'created_at') DateTime createdAt,
     @JsonKey(name: 'updated_at') DateTime updatedAt,
-  }) = _Favorite;
+  }) = _Recipe;
 
-  factory Favorite.fromJson(Map<String, dynamic> json) => _$FavoriteFromJson(json);
+  factory Recipe.fromJson(Map<String, dynamic> json) => _$RecipeFromJson(json);
 
-  factory Favorite.now({
+  factory Recipe.now({
     @required String title,
     @required String description,
     @required String link,
     @required String displayLink,
     @required String thumbnail,
   }) {
-    return Favorite(
+    return Recipe(
       title: title,
       description: description,
       thumbnail: thumbnail,

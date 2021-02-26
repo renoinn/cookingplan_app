@@ -2,19 +2,20 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cookingplan/ui/search/search_state.dart';
 import 'package:cookingplan/ui/search/search_state_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:provider/provider.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final searchPageKey = GlobalKey<ScaffoldState>();
 
-class SearchPage extends StatelessWidget {
+class SearchPage extends HookWidget {
   const SearchPage({
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var results = context.select<SearchState, List<SearchResultItem>>((s) => s.results);
+    final results = useProvider(searchStateProvider.state.select((value) => value.results));
     return Scaffold(
       key: searchPageKey,
       appBar: AppBar(),
@@ -27,7 +28,7 @@ class SearchPage extends StatelessWidget {
             itemCount: results.length ?? 0,
             itemBuilder: (context, position) {
               if (results.length == position) {
-                context.read<SearchStateController>().search();
+                context.read(searchStateProvider).search();
                 return const CircularProgressIndicator();
               }
               var result = results[position];
@@ -40,7 +41,7 @@ class SearchPage extends StatelessWidget {
   }
 }
 
-class _SearchPageResultItem extends StatelessWidget {
+class _SearchPageResultItem extends HookWidget {
   const _SearchPageResultItem({
     Key key,
     @required this.result,
@@ -97,9 +98,9 @@ class _SearchPageResultItem extends StatelessWidget {
                         favorite: result.favorite,
                         onPressed: () {
                           if (result.favorite) {
-                            context.read<SearchStateController>().deleteFavorite(result.link);
+                            context.read(searchStateProvider).deleteFavorite(result.link);
                           } else {
-                            context.read<SearchStateController>().addFavorite(result);
+                            context.read(searchStateProvider).addFavorite(result);
                           }
                         },
                       ),

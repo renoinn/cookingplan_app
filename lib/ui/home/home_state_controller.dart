@@ -1,16 +1,20 @@
 import 'package:cookingplan/entity/food.dart';
 import 'package:cookingplan/repository/food_repository.dart';
 import 'package:cookingplan/ui/home/home_state.dart';
-import 'package:state_notifier/state_notifier.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomeStateController extends StateNotifier<HomeState> with LocatorMixin {
-  HomeStateController(HomeState state) : super(state);
+final homeStateProvider = StateNotifierProvider((ref) => HomeStateController(ref.read));
 
-  FoodRepository get foodRepository => read<FoodRepository>();
+class HomeStateController extends StateNotifier<HomeState> {
+  HomeStateController(this._read) : super(HomeState()) {
+    initState();
+  }
 
-  @override
+  final Reader _read;
+
+  FoodRepository get foodRepository => _read(foodRepositoryProvider);
+
   Future<void> initState() async {
-    super.initState();
     var foods = await foodRepository.getFoods();
     var usedFoods = await foodRepository.getUsedFoods();
     state = state.copyWith(foods: foods, usedFoods: usedFoods);
@@ -27,6 +31,7 @@ class HomeStateController extends StateNotifier<HomeState> with LocatorMixin {
   }
 
   Future<void> deleteFood(Food food) async {
+    await foodRepository.used(food);
     var foods = await foodRepository.getFoods();
     var usedFoods = await foodRepository.getUsedFoods();
     state = state.copyWith(foods: foods, usedFoods: usedFoods);

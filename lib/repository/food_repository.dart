@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:cookingplan/database.dart';
 import 'package:cookingplan/entity/food.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+final foodRepositoryProvider = Provider((_) => FoodRepository());
 
 class FoodRepository {
   FoodRepository();
@@ -40,7 +43,8 @@ class FoodRepository {
 
   Future<int> used(Food food) async {
     var db = await DatabaseProvider.instance().database;
-    var id = await db.update(describeEnum(TableName.food), food.toJson(), where: 'id = ?', whereArgs: <int>[food.id]);
+    var used = food.copyWith(used: true);
+    var id = await db.update(describeEnum(TableName.food), used.toJson(), where: 'id = ?', whereArgs: <int>[food.id]);
     return id;
   }
 }

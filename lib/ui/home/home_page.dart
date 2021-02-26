@@ -1,19 +1,17 @@
 import 'package:cookingplan/entity/food.dart';
-import 'package:cookingplan/repository/search_repository.dart';
-import 'package:cookingplan/ui/home/home_state.dart';
+import 'package:cookingplan/theme.dart';
 import 'package:cookingplan/ui/home/home_state_controller.dart';
 import 'package:cookingplan/ui/search/search_page.dart';
-import 'package:cookingplan/ui/search/search_state.dart';
 import 'package:cookingplan/ui/search/search_state_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_state_notifier/flutter_state_notifier.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final homePageKey = GlobalKey<ScaffoldState>();
 const _kFoodFormHeight = 140.0;
 const _kFoodFormMinimumHeight = 96.0;
 
-class HomePage extends StatelessWidget {
+class HomePage extends HookWidget {
   static const String routeName = 'home/';
 
   const HomePage({
@@ -22,7 +20,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final foods = context.select<HomeState, List<Food>>((s) => s.foods);
+    final foods = useProvider(homeStateProvider.state.select((value) => value.foods));
     // TODO showLicensePage
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
@@ -88,50 +86,43 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class _SearchMealsButton extends StatelessWidget {
+class _SearchMealsButton extends HookWidget {
   const _SearchMealsButton({
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final selectedFoods = useProvider(homeStateProvider.state.select((value) => value.selectedFoods));
     return Visibility(
-      visible: context.select<HomeState, List<Food>>((s) => s.selectedFoods).isNotEmpty,
+      visible: selectedFoods.isNotEmpty,
       child: FloatingActionButton.extended(
         onPressed: () {
-          var selectedFoods = context.read<HomeState>().selectedFoods;
           if (selectedFoods.isEmpty) {
             // TODO show snack bar
             return;
           }
           Navigator.of(context).push<dynamic>(MaterialPageRoute<dynamic>(
             builder: (context) {
-              var searchState = SearchState(selectedFoods: selectedFoods);
-              return Provider<SearchRepository>(
-                create: (context) => SearchRepository(),
-                child: StateNotifierProvider<SearchStateController, SearchState>(
-                  create: (context) => SearchStateController(searchState),
-                  child: Consumer<SearchStateController>(
-                    builder: (context, controller, _) {
-                      controller.search();
-                      return const SearchPage();
-                    },
-                  ),
-                ),
-              );
+              context.read(searchStateProvider).search();
+              return const SearchPage();
             },
           ));
         },
-        icon: const Icon(Icons.search),
-        label: const Text(
+        icon: Icon(
+          Icons.search,
+          color: textColor,
+        ),
+        label: Text(
           '献立を探す ',
+          style: Theme.of(context).textTheme.bodyText1,
         ),
       ),
     );
   }
 }
 
-class _FoodListItem extends StatelessWidget {
+class _FoodListItem extends HookWidget {
   const _FoodListItem({
     Key key,
     this.food,
@@ -143,30 +134,30 @@ class _FoodListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dismissible(
       key: ValueKey(food.name),
-      onDismissed: (direction) {
-        context.read<HomeStateController>().deleteFood(food);
-        Scaffold.of(context).showSnackBar(SnackBar(
-          content: Text('${food.name}を消費しました'),
-          action: SnackBarAction(
-            onPressed: () => homePageKey.currentContext.read<HomeStateController>().undoDelete(food),
-            label: '元に戻す',
-          ),
-        ));
+      onDismissed: (direction) async {
+        await context.read(homeStateProvider).deleteFood(food);
+//        Scaffold.of(context).showSnackBar(SnackBar(
+//          content: Text('${food.name}を消費しました'),
+//          action: SnackBarAction(
+//            onPressed: () => context.read(homeStateProvider).undoDelete(food),
+//            label: '元に戻す',
+//          ),
+//        ));
       },
       background: Container(
         color: Colors.red,
       ),
       child: ListTile(
         onTap: () {
-          if (!context.read<HomeState>().selectedFoods.contains(food)) {
-            context.read<HomeStateController>().selectFood(food);
+          if (!context.read(homeStateProvider.state).selectedFoods.contains(food)) {
+            context.read(homeStateProvider).selectFood(food);
           } else {
-            context.read<HomeStateController>().deselectFood(food);
+            context.read(homeStateProvider).deselectFood(food);
           }
         },
         title: Text(food.name),
         trailing: Visibility(
-          visible: context.select<HomeState, List<Food>>((s) => s.selectedFoods).contains(food),
+          visible: useProvider(homeStateProvider.state.select((value) => value.selectedFoods)).contains(food),
           child: const Icon(
             Icons.check,
             color: Colors.green,
@@ -177,21 +168,16 @@ class _FoodListItem extends StatelessWidget {
   }
 }
 
-class _FoodForm extends StatefulWidget {
+final _foodFormKey = Provider((_) => GlobalKey<FormFieldState<String>>());
+
+class _FoodForm extends HookWidget {
   const _FoodForm({
     Key key,
   }) : super(key: key);
 
   @override
-  _FoodFormState createState() => _FoodFormState();
-}
-
-class _FoodFormState extends State<_FoodForm> {
-  final TextEditingController _food = TextEditingController();
-
-  @override
   Widget build(BuildContext context) {
-    var usedFoods = <Food>[]; //context.select((HomeState s) => s.usedFoods);
+    var usedFoods = useProvider(homeStateProvider.state.select((value) => value.usedFoods));
     final boxHeight = usedFoods.isNotEmpty ? _kFoodFormHeight : _kFoodFormMinimumHeight;
     return Container(
       height: boxHeight,
@@ -212,7 +198,7 @@ class _FoodFormState extends State<_FoodForm> {
                     child: InputChip(
                         label: Text(usedFood.name),
                         onPressed: () {
-                          _food.text = usedFood.name;
+                          context.read(_foodFormKey).currentState.didChange(usedFood.name);
                         }),
                   );
                 }).toList(),
@@ -223,15 +209,15 @@ class _FoodFormState extends State<_FoodForm> {
             children: <Widget>[
               Expanded(
                 child: TextFormField(
-                  controller: _food,
+                  key: useProvider(_foodFormKey),
                   decoration: const InputDecoration(hintText: '食材を追加'),
                 ),
               ),
               FlatButton(
                 onPressed: () {
-                  var food = Food.withName(_food.text);
-                  context.read<HomeStateController>().addFood(food);
-                  _food.clear();
+                  var food = Food.withName(context.read(_foodFormKey).currentState.value);
+                  context.read(homeStateProvider).addFood(food);
+                  context.read(_foodFormKey).currentState.reset();
                 },
                 child: const Icon(Icons.add),
               )
